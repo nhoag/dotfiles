@@ -11,7 +11,7 @@ fi
 # Keep only the first occurence in path, cdpath etc.
 typeset -gU cdpath fpath mailpath path
 
-export GOPATH="$HOME/Source/go"
+export GOPATH="$HOME/src/go"
 
 # Set the list of directories that Zsh searches for programs.
 path=(

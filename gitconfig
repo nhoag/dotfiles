@@ -1,6 +1,6 @@
 [user]
-  name = Adam Stankiewicz
-  email = sheerun@sher.pl
+  name = Nathaniel Hoag
+  email = info@nathanielhoag.com
 
 [core]
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
@@ -13,6 +13,7 @@
   co = checkout
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   cp = cherry-pick
+  sync = "!f() { git checkout master && git fetch --all && git rebase upstream/master && git push -f origin master; }; f"
 
 [color]
   ui = true
@@ -20,37 +21,11 @@
 [push]
   default = current
 
-[git-up "bundler"]
-  check = false
-  autoinstall = true
-
-[git-up "fetch"]
-  all = true
-
-[git-up "rebase"]
-  arguments = --preserve-merges
-  st = status -sb
-  ci = commit
-  br = branch -vv
-  co = checkout
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  cp = cherry-pick
-
 [color]
   ui = true
 
 [push]
   default = current
-
-[git-up "bundler"]
-  check = false
-  autoinstall = true
-
-[git-up "fetch"]
-  all = true
-
-[git-up "rebase"]
-  arguments = --preserve-merges
 
 [rerere]
   enabled = true
