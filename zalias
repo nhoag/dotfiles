@@ -1,0 +1,49 @@
+#!/usr/bin/env zsh
+
+if command -v gh > /dev/null; then
+  eval "$(gh alias -s)"
+fi
+
+# create shell aliases for most used git commands
+alias st='git st'
+alias ci='git ci'
+alias lg='git log'
+alias co='git co'
+alias br='git br'
+alias dc='git diff --cached'
+
+alias add='git add --all'
+alias log='git log'
+alias push='git push'
+alias pull='git pull'
+alias stash='git stash'
+alias clone='git clone'
+alias fetch='git fetch'
+alias merge='git merge -s recursive -X patience'
+alias branch='git branch'
+alias rebase='git rebase'
+alias amend='git commit -C HEAD --amend'
+
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+
+# Pass aliases to root account
+alias sudo='sudo '
+
+if [[ "$(uname)" == 'Darwin' ]]; then
+  if command -v reattach-to-user-namespace > /dev/null; then
+    alias vim="reattach-to-user-namespace $EDITOR"
+  else
+    echo "WARN: Remember to install reattach-to-user-namespace..."
+  fi
+fi
+
+if ls --color -d . &> /dev/null; then
+  alias ls='ls --color=tty' || alias ls='ls -G'
+fi
+
+if ls --group-directories-first &> /dev/null; then
+  eval "$(alias -L ls)' --group-directories-first'"
+fi
+
+eval "$(alias -L ls)' -h'"
