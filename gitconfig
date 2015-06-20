@@ -1,6 +1,6 @@
 [user]
-  name = Nathaniel Hoag
-  email = info@nathanielhoag.com
+	name = Nathaniel Hoag
+	email = info@nathanielhoag.com
 
 [core]
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space

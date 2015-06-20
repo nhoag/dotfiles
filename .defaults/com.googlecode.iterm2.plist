@@ -18038,7 +18038,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string>/usr/local/bin/zsh -i</string>
+			<string>/opt/boxen/homebrew/bin/zsh -i</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
