@@ -128,12 +128,6 @@ defaults write com.apple.dock minimize-to-application -bool true
 echo Restarting Finder
 killall Finder
 
-# Homebrew
-if !(which brew > /dev/null); then
-  echo 'Installing brew...'
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
 echo Linking dotfiles...
 "$DOTDIR/bin/dotfiles" $DOTDIR
 
