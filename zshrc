@@ -1,7 +1,7 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 if [[ ! -d $HOME/.modules/antigen ]]; then
-  git clone https://github.com/sheerun/antigen.git ~/.modules/antigen
+  git clone https://github.com/zsh-users/antigen.git ~/.modules/antigen
 fi
 
 # Antigen is "package manager" for zsh
@@ -48,7 +48,7 @@ export WORDCHARS='*?[]~&;!$%^<>'
 export LANG="en_US.UTF-8"
 
 export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/sheerun/.boot2docker/certs/boot2docker-vm
+export DOCKER_CERT_PATH=/Users/nathaniel.hoag/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
 if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
