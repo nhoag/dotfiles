@@ -4,7 +4,7 @@
 
 [core]
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = ~/.cvsignore
+  excludesfile = /opt/boxen/config/git/gitignore
 
 [alias]
   st = status -sb
@@ -33,3 +33,9 @@
 [url "git@github.com:"]
   pushInsteadOf = "git://github.com/"
   pushInsteadOf = "https://github.com/"
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
