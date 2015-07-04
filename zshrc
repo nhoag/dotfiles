@@ -9,18 +9,6 @@ source ~/.modules/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
-antigen bundles <<EOB
-  safe-paste
-  extract
-  zsh-users/zsh-syntax-highlighting
-  zsh-users/zaw
-  zsh-users/zsh-completions
-EOB
-
-antigen theme sheerun/oh-my-zsh-powerline-theme powerline
-
-antigen apply
-
 # Refresh completions
 # rm -f ~/.zcompdump; compinit
 
@@ -58,3 +46,7 @@ fi
 source ~/.zstyle
 source ~/.zalias
 source ~/.zfunction
+
+if [ -f $HOME/.profile ]; then
+  . $HOME/.profile
+fi
