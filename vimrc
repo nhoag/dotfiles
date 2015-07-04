@@ -5,7 +5,8 @@ source ~/.plugrc
 
 call plug#begin()
 
-Plug 'sheerun/vimrc'
+Plug 'effkay/argonaut.vim'
+Plug 'nhoag/vimrc'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/vitality.vim'
 Plug 'kien/ctrlp.vim'
