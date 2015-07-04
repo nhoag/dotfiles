@@ -136,6 +136,10 @@ Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-scripts/SmartCase'
 Plug 'vim-scripts/gitignore'
 
+" Note-taking
+Plug 'fmoralesc/vim-pad'
+let g:pad#dir=$HOME.'/notes'
+
 call plug#end()
 
 vmap <Leader>y "+y
