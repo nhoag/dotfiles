@@ -1,21 +1,23 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+autoload -U colors && colors
 
-if [[ ! -d $HOME/.modules/antigen ]]; then
-  git clone https://github.com/zsh-users/antigen.git ~/.modules/antigen
+if [[ ! -d $HOME/.modules/zgen ]]; then
+  git clone https://github.com/tarjoilija/zgen.git ~/.modules/zgen
 fi
 
-# Antigen is "package manager" for zsh
-source ~/.modules/antigen/antigen.zsh
+# Zgen is "package manager" for zsh
+source ~/.modules/zgen/zgen.zsh
 
-antigen use oh-my-zsh
-
-antigen bundle zsh-users/zsh-history-substring-search
-antigen apply
-
-source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-history-substring-search.git/zsh-history-substring-search.zsh
-
-# Refresh completions
-# rm -f ~/.zcompdump; compinit
+if ! zgen saved; then
+  echo "Creating a zgen save"
+  # plugins
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-history-substring-search
+  zgen load zsh-users/zsh-completions src
+  zgen load zsh-users/zaw
+  zgen load nhoag/zsh-themes basic
+  zgen save
+fi
 
 # Editor
 if command -v nvim > /dev/null; then
@@ -24,14 +26,8 @@ else
   export EDITOR=vim
 fi
 
-
 # Less
 export LESSSECURE=1
-
-fpath=(~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-completions.git/src $fpath)
-
-bindkey '^R' zaw-history
-bindkey '^O' zaw-git-files-legacy
 
 autoload -U zmv
 
@@ -39,10 +35,6 @@ autoload -U zmv
 export WORDCHARS='*?[]~&;!$%^<>'
 
 export LANG="en_US.UTF-8"
-
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/nathaniel.hoag/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
 
 if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
   source ~/.nix-profile/etc/profile.d/nix.sh

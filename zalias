@@ -37,5 +37,3 @@ fi
 if ls --group-directories-first &> /dev/null; then
   eval "$(alias -L ls)' --group-directories-first'"
 fi
-
-eval "$(alias -L ls)' -h'"
