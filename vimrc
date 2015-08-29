@@ -16,6 +16,7 @@ let g:airline_theme='powerlineish'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_z=''
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 " Press v over and over again to expand selection
 Plug 'terryma/vim-expand-region'
@@ -178,3 +179,4 @@ nnoremap L $
 " Enable Spell Checking for markdown files
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.markdown setlocal spell
+
