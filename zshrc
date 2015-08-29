@@ -9,6 +9,11 @@ source ~/.modules/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
+antigen bundle zsh-users/zsh-history-substring-search
+antigen apply
+
+source ~/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-history-substring-search.git/zsh-history-substring-search.zsh
+
 # Refresh completions
 # rm -f ~/.zcompdump; compinit
 
