@@ -6,7 +6,7 @@ source ~/.plugrc
 call plug#begin()
 
 Plug 'nhoag/vimrc'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'sjl/vitality.vim'
 Plug 'kien/ctrlp.vim'
 
@@ -24,17 +24,17 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 " Awesome autocompletion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 
 " Lightning fast :Ag searcher
 Plug 'rking/ag.vim'
 
 " Ruby extensions
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-rake', { 'for': 'ruby' }
-Plug 'kana/vim-textobj-user', { 'for': 'ruby' }
+" Plug 'tpope/vim-rails', { 'for': 'ruby' }
+" Plug 'tpope/vim-rake', { 'for': 'ruby' }
+" Plug 'kana/vim-textobj-user', { 'for': 'ruby' }
 " var, vir
-Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
+" Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-rsi'
@@ -45,10 +45,10 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 
 " Allow to :Rename files
-Plug 'danro/rename.vim'
+" Plug 'danro/rename.vim'
 
 " Automatically find root project directory
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 
 " Expand / wrap hashes etc.
 Plug 'AndrewRadev/splitjoin.vim'
@@ -57,23 +57,23 @@ nmap sk :SplitjoinJoin<cr>
 
 
 " Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
-Plug 'jnwhiteh/vim-golang', { 'for': 'go' }
-Plug 'Blackrush/vim-gocode', { 'for': 'go' }
-Plug 'moll/vim-node', { 'for': 'node' }
+" Plug 'jnwhiteh/vim-golang', { 'for': 'go' }
+" Plug 'Blackrush/vim-gocode', { 'for': 'go' }
+" Plug 'moll/vim-node', { 'for': 'node' }
 
-Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
-au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
-au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+" Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
+" au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
+" au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 
-Plug 'derekelkins/agda-vim', { 'for': 'agda' }
-imap <buffer> \forall ∀
-imap <buffer> \to →
-imap <buffer> \lambda λ
-imap <buffer> \Sigma Σ
-imap <buffer> \exists ∃
-imap <buffer> \equiv ≡
-imap <buffer> \then ⇒
-imap <buffer> \N ℕ
+" Plug 'derekelkins/agda-vim', { 'for': 'agda' }
+" imap <buffer> \forall ∀
+" imap <buffer> \to →
+" imap <buffer> \lambda λ
+" imap <buffer> \Sigma Σ
+" imap <buffer> \exists ∃
+" imap <buffer> \equiv ≡
+" imap <buffer> \then ⇒
+" imap <buffer> \N ℕ
 
 " Navitate freely between tmux and vim
 Plug 'christoomey/vim-tmux-navigator'
@@ -127,9 +127,9 @@ Plug 'tpope/vim-vinegar'
 " hi ColorColumn guibg=#262626 ctermbg=235
 
 " Allow for adding github comments
-Plug 'mattn/webapi-vim'
-Plug 'moznion/github-commit-comment.vim'
-command! -nargs=* Comment call github_commit_comment#comment_line(<f-args>)
+" Plug 'mattn/webapi-vim'
+" Plug 'moznion/github-commit-comment.vim'
+" command! -nargs=* Comment call github_commit_comment#comment_line(<f-args>)
 
 " Better search tools
 Plug 'vim-scripts/IndexedSearch'
@@ -137,8 +137,8 @@ Plug 'vim-scripts/SmartCase'
 Plug 'vim-scripts/gitignore'
 
 " Note-taking
-Plug 'fmoralesc/vim-pad'
-let g:pad#dir=$HOME.'/notes'
+" Plug 'fmoralesc/vim-pad'
+" let g:pad#dir=$HOME.'/notes'
 
 call plug#end()
 
