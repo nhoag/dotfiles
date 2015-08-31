@@ -24,6 +24,8 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
 
 if [[ ! -d $HOME/.modules/zgen ]]; then
   git clone https://github.com/tarjoilija/zgen.git ~/.modules/zgen
