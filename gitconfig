@@ -6,6 +6,7 @@
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   excludesfile = /opt/boxen/config/git/gitignore
   autocrlf = input
+  # Speed up `git diff` and `git status`
   preloadindex = true
   # Uncomment below for fancier `git diff`.
   # From: https://github.com/so-fancy/diff-so-fancy
