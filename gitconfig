@@ -1,10 +1,15 @@
 [user]
-	name = Nathaniel Hoag
-	email = info@nathanielhoag.com
+  name = Nathaniel Hoag
+  email = info@nathanielhoag.com
 
 [core]
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   excludesfile = /opt/boxen/config/git/gitignore
+  autocrlf = input
+  preloadindex = true
+  # Uncomment below for fancier `git diff`.
+  # From: https://github.com/so-fancy/diff-so-fancy
+  # pager = diff-so-fancy | less --tabs=1,5 -R
 
 [alias]
   st = status -sb
@@ -15,14 +20,8 @@
   cp = cherry-pick
   sync = "!f() { git checkout master && git fetch --all && git rebase upstream/master && git push -f origin master; }; f"
 
-[color]
-  ui = true
-
 [push]
   default = current
-
-[color]
-  ui = true
 
 [push]
   default = current
@@ -35,7 +34,24 @@
   pushInsteadOf = "https://github.com/"
 
 [hub]
-protocol = https
+  protocol = https
 
 [credential]
-helper = /opt/boxen/bin/boxen-git-credential
+  helper = /opt/boxen/bin/boxen-git-credential
+
+[color]
+  ui = always
+
+[color "diff"]
+  meta = yellow bold
+  commit = green bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
