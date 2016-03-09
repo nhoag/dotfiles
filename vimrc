@@ -11,7 +11,7 @@ Plug 'sjl/vitality.vim'
 Plug 'kien/ctrlp.vim'
 
 " Really nice prompt
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='powerlineish'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
