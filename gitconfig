@@ -6,9 +6,6 @@
 	ct = commit
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
-[push]
-  default = current
-
 	# Switch to a branch, creating it if necessary
 	go = !"f() { \
 			git checkout -b \"$1\" 2> /dev/null \
