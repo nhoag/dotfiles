@@ -1,0 +1,29 @@
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Editor
+if command -v nvim > /dev/null; then
+  export EDITOR=nvim
+else
+  export EDITOR=vim
+fi
+
+# Less
+export LESSSECURE=1
+export LESS='-i -R -F -X -n'
+
+# Readline
+export WORDCHARS='*?[]~&;!$%^<>'
+
+export LANG="en_US.UTF-8"
+
+export LC_ALL=en_US.UTF-8
+export CLICOLOR=1
+export LSCOLORS=exfxcxdxbxegedabagacad
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export HIST_IGNORE_ALL_DUPS=1
+
+# Set `open` tool as default `BROWSER` on OS X.
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER='open'
+fi

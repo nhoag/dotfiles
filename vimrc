@@ -1,182 +1,103 @@
 let mapleader = "\<Space>"
-let maplocalleader = ","
-
-source ~/.plugrc
+set nocompatible
+set autoindent
+set backspace=indent,eol,start
+set complete-=i
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set nrformats-=octal
+set incsearch
+nnoremap <Leader>/ :nohlsearch<CR>
+" nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+set laststatus=2
+set ruler
+set showcmd
+set wildmenu
+set display+=lastline
+set autoread
+set fileformats+=mac
+set history=1000
+set tabpagemax=50
+let s:dir = has('win32') ? '$APPDATA/Vim' : isdirectory($HOME.'/Library') ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
+let &backupdir = expand(s:dir) . '/backup//'
+let &undodir = expand(s:dir) . '/undo//'
+set undofile
+inoremap <C-U> <C-G>u<C-U>
+if !isdirectory(expand(s:dir))
+  call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
+end
+" set cursorline
+set scrolloff=8
+set sidescroll=1
+set sidescrolloff=15
+set winwidth=79
+set winheight=5
+set winminheight=5
+set hidden
+set switchbuf=usetab
+set wrap linebreak
+set showbreak=" "
+vmap j gj
+vmap k gk
+nmap j gj
+nmap k gk
+set wildmode=longest,full
+set number
+set noerrorbells
+set visualbell
+set modeline
+set foldmethod=indent
+set foldnestmax=3
+set nofoldenable
+set noswapfile
+set viminfo='100,f1
+set hlsearch
+set ignorecase
+set showmode
+set smartcase
+noremap n nzz
+noremap N Nzz
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>
+function! CloseWindowOrKillBuffer()
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+  if matchstr(expand("%"), 'NERD') == 'NERD'
+    wincmd c
+    return
+  endif
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    bdelete
+  endif
+endfunction
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
+set title
+nnoremap <C-w>s <C-w>s<C-w>w
+nnoremap <C-w>v <C-w>v<C-w>w
+set shortmess+=I
 
 call plug#begin()
-
-Plug 'nhoag/vimrc'
-" Plug 'sheerun/vim-polyglot'
-Plug 'sjl/vitality.vim'
-Plug 'kien/ctrlp.vim'
-
-" Really nice prompt
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='powerlineish'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-
-" Press v over and over again to expand selection
-Plug 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-" Awesome autocompletion
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-
-" Lightning fast :Ag searcher
-Plug 'rking/ag.vim'
-
-" Ruby extensions
-" Plug 'tpope/vim-rails', { 'for': 'ruby' }
-" Plug 'tpope/vim-rake', { 'for': 'ruby' }
-" Plug 'kana/vim-textobj-user', { 'for': 'ruby' }
-" var, vir
-" Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-unimpaired'
-
-" Allow to :Rename files
-" Plug 'danro/rename.vim'
-
-" Automatically find root project directory
-" Plug 'airblade/vim-rooter'
-
-" Expand / wrap hashes etc.
-Plug 'AndrewRadev/splitjoin.vim'
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
-
-
-" Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
-" Plug 'jnwhiteh/vim-golang', { 'for': 'go' }
-" Plug 'Blackrush/vim-gocode', { 'for': 'go' }
-" Plug 'moll/vim-node', { 'for': 'node' }
-
-" Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
-" au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
-" au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
-
-" Plug 'derekelkins/agda-vim', { 'for': 'agda' }
-" imap <buffer> \forall ∀
-" imap <buffer> \to →
-" imap <buffer> \lambda λ
-" imap <buffer> \Sigma Σ
-" imap <buffer> \exists ∃
-" imap <buffer> \equiv ≡
-" imap <buffer> \then ⇒
-" imap <buffer> \N ℕ
-
-" Navitate freely between tmux and vim
-Plug 'christoomey/vim-tmux-navigator'
-
-" Run ruby tests with vimux
-Plug 'benmills/vimux'
-Plug 'skalnik/vim-vroom'
-Plug 'tpope/vim-dispatch'
-let g:vroom_use_vimux = 1
-let g:vroom_write_all = 1
-let g:vroom_use_binstubs = 1
-let g:vroom_use_colors = 0
-let g:vroom_rspec_version = "3.x"
-let g:VimuxHeight = "40"
-
-" Nice column aligning with <Enter>
-Plug 'junegunn/vim-easy-align'
-vmap <Enter> <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
-
-" I need to revisit those plugins before enabling:
-" Plug 'tpope/vim-projectionist'
-" Plug 'SirVer/ultisnips'
-" let g:UltiSnipsExpandTrigger="<C-j>"
-" let g:UltiSnipsJumpForwardTrigger="<C-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-" Plug 'honza/vim-snippets'
-" Plug 'xuhdev/SingleCompile'
-" nmap <Leader>d :SCCompile<cr>
-" nmap <Leader>e :SCCompileRun<cr>
-" Vim flow caused some issues with parsing last time
-" Plug 'facebook/vim-flow'
-" Plug 'vim-scripts/SyntaxRange'
-" Plug 'rking/pry-de', { 'rtp': 'vim' }
-" Plug 'AndrewRadev/switch.vim'
-" nmap <Leader><Tab> :Switch<CR>
-
-Plug 'michaeljsmith/vim-indent-object' " ii / ai
-
-" For more reliable indenting and performance
-set foldmethod=indent
-set fillchars="fold: "
-
-" Nice file browsing with -
-Plug 'eiginn/netrw'
-let g:netrw_altfile = 1
-Plug 'tpope/vim-vinegar'
-
-" Set nice 80-characters limiter
-" execute "set colorcolumn=" . join(range(81,335), ',')
-" hi ColorColumn guibg=#262626 ctermbg=235
-
-" Allow for adding github comments
-" Plug 'mattn/webapi-vim'
-" Plug 'moznion/github-commit-comment.vim'
-" command! -nargs=* Comment call github_commit_comment#comment_line(<f-args>)
-
-" Better search tools
-Plug 'vim-scripts/IndexedSearch'
-Plug 'vim-scripts/SmartCase'
-Plug 'vim-scripts/gitignore'
-
-" Note-taking
-" Plug 'fmoralesc/vim-pad'
-" let g:pad#dir=$HOME.'/notes'
-
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-nmap <Leader><Leader> V
-nmap <Leader>b :make<CR>
-nnoremap <Leader><Tab> <C-^>
-nnoremap <Leader>y :!annotate expand('%:p') " what?
-
 nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>i :CtrlPBuffer<CR>
 
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
-
-
-nnoremap <Leader>o :CtrlP<CR>
-nnoremap <CR> G
-nnoremap <BS> gg
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>s :wq<CR>
-nnoremap <Leader>v V
-nnoremap <Leader>g gf
-
-" Remove trailing whitespaces
-nnoremap <silent> <Leader><BS> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:w<CR>
-
-nnoremap H 0
-nnoremap L $
-
-" Enable Spell Checking for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd BufRead,BufNewFile *.markdown setlocal spell
-
+" Improved pasting
+" @see http://stackoverflow.com/questions/5585129/pasting-code-into-terminal-window-into-vim-on-mac-os-x
+if &term =~ "xterm.*"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+    vmap <expr> <Esc>[200~ XTermPasteBegin("c")
+    cmap <Esc>[200~ <nop>
+    cmap <Esc>[201~ <nop>
+endif

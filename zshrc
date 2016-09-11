@@ -1,8 +1,7 @@
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 autoload -U colors && colors
 ## Command history configuration
 if [ -z "$HISTFILE" ]; then
-    HISTFILE=$HOME/.zsh_history
+  HISTFILE=$HOME/.zsh_history
 fi
 
 HISTSIZE=1000000
@@ -44,6 +43,31 @@ if ! zgen saved; then
   zgen save
 fi
 
+NORMAL_MODE="%{$fg[red]%}*%{$reset_color%}"
+INSERT_MODE="%{$fg[yellow]%}<%{$reset_color%}"
+
+function zle-line-init zle-keymap-select {
+  RPS1="${${KEYMAP/vicmd/$NORMAL_MODE}/(main|viins)/}"
+  RPS2=$RPS1
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+zle -N edit-command-line
+
+# Default to vi mode in zsh
+bindkey -v
+bindkey -M vicmd 'z' edit-command-line
+autoload -Uz edit-command-line
+
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^b' backward-word
+bindkey '^w' forward-word
+
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -62,31 +86,73 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# Editor
-if command -v nvim > /dev/null; then
-  export EDITOR=nvim
-else
-  export EDITOR=vim
-fi
-
-# Less
-export LESSSECURE=1
-
 autoload -U zmv
 
-# Readline
-export WORDCHARS='*?[]~&;!$%^<>'
-
-export LANG="en_US.UTF-8"
+autoload -Uz vcs_info
+# %s - The current version control system, like git or svn.
+# %r - The name of the root directory of the repository
+# %S - The current path relative to the repository root directory
+# %b - Branch information, like master
+# %m - In case of Git, show information about stashes
+# %u - Show unstaged changes in the repository
+# %c - Show staged changes in the repository
+zstyle ':vcs_info:*' enable git svn
+# zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
+zstyle ':vcs_info:*' formats " %{$fg_bold[yellow]%}%b%{$reset_color%}%c%u"
+# zstyle ':vcs_info:*' stagedstr " %{$fg[green]%}✔%{$reset_color%}"
+# zstyle ':vcs_info:*' unstagedstr " %{$fg[red]%}✘%{$reset_color%}"
+zstyle ':vcs_info:*' actionformats "%s→%b (%a)"
+precmd() {
+  vcs_info
+}
+setopt prompt_subst
+GIT_PROMPT='${vcs_info_msg_0_}'
+PROMPT="%{$fg[blue]%}%/$GIT_PROMPT %{$fg[green]%}%# %{$reset_color%}"
 
 if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
   source ~/.nix-profile/etc/profile.d/nix.sh
 fi
 
-source ~/.zstyle
-source ~/.zalias
-source ~/.zfunction
-
 if [ -f $HOME/.profile ]; then
   . $HOME/.profile
 fi
+
+#RPROMPT=''
+#ASYNC_PROC=0
+#function async_build_prompt() {
+#    function async() {
+#        # save to temp file
+#        # sleep 2 && printf "%s" "$(date)" > "${HOME}/.zsh_tmp_prompt"
+#
+#        # signal parent
+#        kill -USR1 $$
+#    }
+#
+#    # do not clear RPROMPT, let it persist
+#
+#    # kill child if necessary
+#    if [[ "${ASYNC_PROC}" != 0 ]]; then
+#        kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+#    fi
+#
+#    # start background computation
+#    async &!
+#    ASYNC_PROC=$!
+#}
+#
+#async_build_prompt &!
+#
+#function TRAPUSR1() {
+#    # read from temp file
+#    RPROMPT="$(cat ${HOME}/.zsh_tmp_prompt)"
+#
+#    # reset proc number
+#    ASYNC_PROC=0
+#
+#    # redisplay
+#    zle && zle reset-prompt
+#}
+
+# added by travis gem
+[ -f /Users/nathaniel.hoag/.travis/travis.sh ] && source /Users/nathaniel.hoag/.travis/travis.sh

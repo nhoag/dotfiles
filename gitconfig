@@ -1,58 +1,107 @@
-[user]
-  name = Nathaniel Hoag
-  email = info@nathanielhoag.com
-
-[core]
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = /opt/boxen/config/git/gitignore
-  autocrlf = input
-  # Speed up `git diff` and `git status`
-  preloadindex = true
-  # Uncomment below for fancier `git diff`.
-  # From: https://github.com/so-fancy/diff-so-fancy
-  # pager = diff-so-fancy | less --tabs=1,5 -R
-
 [alias]
-  st = status -sb
-  ci = commit
-  br = branch -vv
-  co = checkout
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  cp = cherry-pick
-  sync = "!f() { git checkout master && git fetch --all && git rebase upstream/master && git push -f origin master; }; f"
+	st = status -sb
+	br = branch -vv
+	co = checkout
+	cp = cherry-pick
+	ct = commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [push]
   default = current
 
-[push]
-  default = current
+	# Switch to a branch, creating it if necessary
+	go = !"f() { \
+			git checkout -b \"$1\" 2> /dev/null \
+				|| git checkout \"$1\"; \
+		}; f"
 
-[rerere]
-  enabled = true
+	# Checkout a pull request from origin (of a github repository)
+	pr = !"f() { \
+			git fetch github pull/$1/head:pr-$1 \
+				&& git checkout pr-$1; \
+		}; f"
 
-[url "git@github.com:"]
-  pushInsteadOf = "git://github.com/"
-  pushInsteadOf = "https://github.com/"
+	sync = !"f() { \
+			git checkout master \
+				&& git fetch --all \
+				&& git rebase upstream/master \
+				&& git push -f origin master; \
+		}; f"
 
-[hub]
-  protocol = https
+	# Show verbose output about tags, branches or remotes
+	branches = branch -a
+	remotes = remote -v
+	tags = tag -l
 
-[credential]
-  helper = /opt/boxen/bin/boxen-git-credential
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+
+	# Wrapper for git push to enable a post-push hook
+	push-wh = !"f() { \
+			local GIT_DIR_="$(git rev-parse --git-dir)" \
+				&& local BRANCH="$(git rev-parse --symbolic --abbrev-ref $(git symbolic-ref HEAD))" \
+				&& local POST_PUSH="$GIT_DIR_/hooks/post-push" \
+				&& git push "$@" \
+				&& test $? -eq 0 && test -x "$POST_PUSH" \
+				&& exec "$POST_PUSH" "$BRANCH"; \
+		}; f"
 
 [color]
-  ui = always
+	ui = always
 
 [color "diff"]
-  meta = yellow bold
-  commit = green bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-  whitespace = red reverse
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 
 [color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = "red bold 52"
-  newNormal = "green bold"
-  newHighlight = "green bold 22"
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+
+[commit]
+	gpgsign = true
+
+[core]
+	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+	# default excludesfile in ~/.config/git/ignore
+	# excludesfile = ~/.gitignore
+	autocrlf = input
+	# Speed up `git diff` and `git status`
+	preloadindex = true
+	# See: https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
+	trustctime = false
+	# Uncomment below for fancier `git diff`.
+	# From: https://github.com/so-fancy/diff-so-fancy
+	# pager = diff-so-fancy | less --tabs=1,5 -R
+
+[diff]
+	compactionHeuristic = true
+
+[gpg]
+	program = /usr/local/bin/gpg2
+
+[hub]
+	protocol = https
+
+[pull]
+	rebase = true
+
+[push]
+	default = current
+
+[rerere]
+	enabled = true
+
+[url "git@github.com:"]
+	pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "https://github.com/"
+
+[user]
+	name = Nathaniel Hoag
+	email = info@nathanielhoag.com
+	signingkey = 0600EDC6

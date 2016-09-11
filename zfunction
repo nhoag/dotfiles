@@ -1,4 +1,23 @@
-fancy-ctrl-z () {
+# Homebrew update, upgrade, cleanup, doctor
+function bs() {
+  echo "/tmp/brewlog-$(/bin/date -j '+%Y%m%d')"
+  echo -ne "UPDATE \033[0K\r"
+  brew update > /tmp/brewlog-$(/bin/date -j "+%Y%m%d") 2>&1
+  echo -ne "UPGRADE \033[0K\r"
+  brew upgrade --all >> /tmp/brewlog-$(/bin/date -j "+%Y%m%d") 2>&1
+  echo -ne "CLEANUP \033[0K\r"
+  brew cleanup >> /tmp/brewlog-$(/bin/date -j "+%Y%m%d") 2>&1
+  echo -ne "DOCTOR \033[0K\r"
+  brew doctor >> /tmp/brewlog-$(/bin/date -j "+%Y%m%d") 2>&1
+}
+
+# Open Drupal project webpage
+function dp() {
+  open https://www.drupal.org/project/$1
+}
+
+# Fast Vim:Shell Switching
+function fancy-ctrl-z() {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line
@@ -10,6 +29,23 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-work_log() {
-  for i in *; do [ -d "$i/.git" ] && (cd $i; git log --date=short --pretty=format:"%ad $i %s" --author="$(git config --get user.email)") 2> /dev/null; done | sort | tac
+# HTTP Status info
+function hs() {
+  curl -sk http://httpstat.us/$1
+  printf "\n"
+}
+
+# Create directory and cd
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
+
+# Open file at line number using colon syntax
+# Example: vi file.txt:5
+function vi() {
+  if [[ $@ =~ ^([^:]+):([0-9]+)$ ]]; then
+    vim "${match[1]}" "+${match[2]}"
+  else
+    vim "$@"
+  fi
 }

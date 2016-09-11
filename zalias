@@ -4,14 +4,13 @@ if command -v gh > /dev/null; then
   eval "$(gh alias -s)"
 fi
 
-# create shell aliases for most used git commands
+# create shell aliases for most-used git commands
 alias st='git st'
-alias ci='git ci'
+alias ct='git ct'
 alias lg='git log'
 alias co='git co'
 alias br='git br'
 alias dc='git diff --cached'
-
 alias add='git add --all'
 alias log='git log'
 alias push='git push'
@@ -37,3 +36,10 @@ fi
 if ls --group-directories-first &> /dev/null; then
   eval "$(alias -L ls)' --group-directories-first'"
 fi
+
+extensions='php,module,inc,install,test,profile,theme,js,css,info,txt,md'
+alias dcs="phpcs --standard=Drupal --extensions=${extensions}"
+alias dcbf="phpcbf --standard=Drupal --extensions=${extensions}"
+
+alias pbd="pbcopy </dev/null"
+alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
