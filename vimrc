@@ -1,4 +1,5 @@
 let mapleader = "\<Space>"
+colorscheme peachpuff
 set nocompatible
 set autoindent
 set backspace=indent,eol,start
@@ -8,9 +9,12 @@ set shiftwidth=2
 set expandtab
 set smarttab
 set nrformats-=octal
+" Disable nvim default entering VISUAL mode on mouse selection
+set mouse-=a
+" Search behaviors
 set incsearch
+set hlsearch
 nnoremap <Leader>/ :nohlsearch<CR>
-" nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 set laststatus=2
 set ruler
 set showcmd
@@ -53,7 +57,6 @@ set foldnestmax=3
 set nofoldenable
 set noswapfile
 set viminfo='100,f1
-set hlsearch
 set ignorecase
 set showmode
 set smartcase
