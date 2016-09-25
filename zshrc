@@ -66,7 +66,8 @@ bindkey '^w' backward-kill-word
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^b' backward-word
-bindkey '^w' forward-word
+bindkey '^f' forward-word
+bindkey '^d' delete-word
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
