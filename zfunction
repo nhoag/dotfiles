@@ -44,8 +44,8 @@ function mcd() {
 # Example: vi file.txt:5
 function vi() {
   if [[ $@ =~ ^([^:]+):([0-9]+)$ ]]; then
-    vim "${match[1]}" "+${match[2]}"
+    nvim "${match[1]}" "+${match[2]}"
   else
-    vim "$@"
+    nvim "$@"
   fi
 }
