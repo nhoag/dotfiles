@@ -111,11 +111,11 @@ setopt prompt_subst
 GIT_PROMPT='${vcs_info_msg_0_}'
 PROMPT="%{$fg[blue]%}%/$GIT_PROMPT %{$fg[green]%}%# %{$reset_color%}"
 
-if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
-  source ~/.nix-profile/etc/profile.d/nix.sh
+if [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
+  . $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
 
-if [ -f $HOME/.profile ]; then
+if [[ -f $HOME/.profile ]]; then
   . $HOME/.profile
 fi
 
@@ -156,4 +156,6 @@ fi
 #}
 
 # added by travis gem
-[ -f /Users/nathaniel.hoag/.travis/travis.sh ] && source /Users/nathaniel.hoag/.travis/travis.sh
+[[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
+
+[[ -e "${HOME}/.iterm2_shell_integration.zsh" ]] && . "${HOME}/.iterm2_shell_integration.zsh"
