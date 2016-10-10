@@ -5,7 +5,7 @@
 	cp = cherry-pick
 	ct = commit
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  ph = push-with-hooks
+	ph = push-with-hooks
 
 	# Switch to a branch, creating it if necessary
 	go = !"f() { \
