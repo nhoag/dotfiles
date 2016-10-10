@@ -88,6 +88,9 @@ call plug#end()
 
 nnoremap <Leader>o :CtrlP<CR>
 
+" Remove trailing whitespace on write
+autocmd BufWritePre * :%s/\s\+$//e
+
 " Improved pasting
 " @see http://stackoverflow.com/questions/5585129/pasting-code-into-terminal-window-into-vim-on-mac-os-x
 if &term =~ "xterm.*"
