@@ -17776,6 +17776,8 @@
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
+	<false/>
+	<key>HideTabCloseButton</key>
 	<true/>
 	<key>HighlightTabLabels</key>
 	<true/>
@@ -17799,6 +17801,8 @@
 	<integer>7</integer>
 	<key>LeftOption</key>
 	<integer>2</integer>
+	<key>LeftTabBarWidth</key>
+	<real>102.90625</real>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>MaxVertically</key>
@@ -17826,7 +17830,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>322</string>
+		<string>307</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -17841,10 +17845,12 @@
 	<string>269 313 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>328 288 620 392 0 0 1280 777 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>328 270 796 473 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>25 223 1210 554 0 0 1280 777 </string>
+	<string>17 37 1200 724 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>264 163 650 452 0 0 1280 777 </string>
+	<string>276 325 665 452 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>173 27 650 452 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -18422,6 +18428,8 @@
 			<true/>
 			<key>Normal Font</key>
 			<string>Menlo-Regular 14</string>
+			<key>Open Toolbelt</key>
+			<true/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -18604,6 +18612,8 @@
 			<string>/Users/nathaniel.hoag</string>
 		</dict>
 	</array>
+	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
+	<true/>
 	<key>NoSyncConfirmBeta</key>
 	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
@@ -18686,15 +18696,15 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing3.xml?shard=99</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=99</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-06-30T13:43:24Z</date>
+	<date>2016-10-09T10:33:07Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
-	<false/>
+	<true/>
 	<key>Show Toolbelt</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -18712,11 +18722,17 @@
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
 	<key>TabViewType</key>
-	<integer>0</integer>
+	<integer>2</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
 	<integer>10</integer>
+	<key>ToolbeltTools</key>
+	<array>
+		<string>Command History</string>
+		<string>Recent Directories</string>
+		<string>Paste History</string>
+	</array>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>URLHandlersByGuid</key>
@@ -18742,7 +18758,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.3</string>
+	<string>3.0.10</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
