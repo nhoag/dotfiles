@@ -29,6 +29,16 @@ function fancy-ctrl-z() {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
+# SSH Public Key Fingerprints
+# http://serverfault.com/questions/413231/how-to-get-all-fingerprints-for-ssh-authorized-keys2-file
+function fingerprints() {
+  local hash=${2:-'md5'}
+  local file="$1"
+  while read l; do
+    [[ -n $l && ${l###} = $l ]] && ssh-keygen -E "${hash}" -l -f /dev/stdin <<<$l
+  done < $file
+}
+
 # HTTP Status info
 function hs() {
   curl -sk "http://httpstat.us/${1}"
