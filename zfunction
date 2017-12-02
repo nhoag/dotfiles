@@ -50,6 +50,16 @@ function mcd() {
   mkdir -p "$1" && cd "$1"
 }
 
+function rand() {
+  local LENGTH=$1
+  date +%s \
+    | shasum \
+    | base64 \
+    | head -c $LENGTH \
+    | tr '[:upper:]' '[:lower:]'
+  echo
+}
+
 # Open file at line number using colon syntax
 # Example: vi file.txt:5
 function vi() {
