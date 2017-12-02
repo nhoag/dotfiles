@@ -12,6 +12,12 @@ function bs() {
   done
 }
 
+function rmline() {
+  local FILE=${2:-"${HOME}/.ssh/known_hosts"}
+  local LINE=$1
+  gsed -i -e "${LINE}d" "${FILE}"
+}
+
 # Open Drupal project webpage
 function dp() {
   open "https://www.drupal.org/project/${1}"
