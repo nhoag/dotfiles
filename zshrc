@@ -157,5 +157,3 @@ fi
 
 # added by travis gem
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
-
-[[ -e "${HOME}/.iterm2_shell_integration.zsh" ]] && . "${HOME}/.iterm2_shell_integration.zsh"
