@@ -76,14 +76,10 @@
 
 [diff]
 	renameLimit = 2000
-	tool = meld
+	tool = vimdiff
 
 [difftool]
 	prompt = false
-
-[difftool "meld"]
-	trustExitCode = true
-	cmd = open -W -a Meld --args \"$LOCAL\" \"$REMOTE\"
 
 [gpg]
 	program = /usr/local/bin/gpg
@@ -92,14 +88,10 @@
 	protocol = https
 
 [merge]
-	tool = meld
+	tool = vimdiff
 
 [mergetool]
 	prompt = false
-
-[mergetool "meld"]
-	trustExitCode = true
-	cmd = open -W -a Meld --args --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output=\"$MERGED\"
 
 [pull]
 	rebase = true
