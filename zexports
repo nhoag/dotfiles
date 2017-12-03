@@ -1,11 +1,7 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Editor
-if command -v nvim > /dev/null; then
-  export EDITOR=nvim
-else
-  export EDITOR=vim
-fi
+export EDITOR=vim
 
 # Less
 export LESSSECURE=1
