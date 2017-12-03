@@ -67,12 +67,3 @@ function rand() {
   echo
 }
 
-# Open file at line number using colon syntax
-# Example: vi file.txt:5
-function vi() {
-  if [[ $@ =~ ^([^:]+):([0-9]+)$ ]]; then
-    nvim "${match[1]}" "+${match[2]}"
-  else
-    nvim "$@"
-  fi
-}
