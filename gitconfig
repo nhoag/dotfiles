@@ -19,6 +19,7 @@
 				&& git checkout pr-$1; \
 		}; f"
 
+  # Sync changes from upstream to fork
 	sync = !"f() { \
 			git checkout master \
 				&& git fetch --all \
@@ -66,22 +67,18 @@
 
 [core]
 	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-	# default excludesfile in ~/.config/git/ignore
-	# excludesfile = ~/.gitignore
 	autocrlf = input
 	# Speed up `git diff` and `git status`
 	preloadindex = true
 	# See: https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
 	trustctime = false
-	# Uncomment below for fancier `git diff`.
-	# From: https://github.com/so-fancy/diff-so-fancy
-	# pager = diff-so-fancy | less --tabs=1,5 -R
+	ignoreCase = false
 
 [diff]
-	compactionHeuristic = true
+	renameLimit = 2000
 
 [gpg]
-	program = /usr/local/bin/gpg2
+	program = /usr/local/bin/gpg
 
 [hub]
 	protocol = https
@@ -102,4 +99,5 @@
 [user]
 	name = Nathaniel Hoag
 	email = info@nathanielhoag.com
-	signingkey = 0600EDC6
+	signingkey = 2D868EC7
+
