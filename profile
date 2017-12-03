@@ -9,3 +9,4 @@ fi
 for file in ~/.{ah_profile,alias,zacquia,zalias,zfunction,zexports,zopts,zpath,zprivate,zstyle}; do
   [[ -r "$file" ]] && [[ -f "$file" ]] && . "$file"
 done
+
