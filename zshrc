@@ -119,41 +119,5 @@ if [[ -f $HOME/.profile ]]; then
   . $HOME/.profile
 fi
 
-#RPROMPT=''
-#ASYNC_PROC=0
-#function async_build_prompt() {
-#    function async() {
-#        # save to temp file
-#        # sleep 2 && printf "%s" "$(date)" > "${HOME}/.zsh_tmp_prompt"
-#
-#        # signal parent
-#        kill -USR1 $$
-#    }
-#
-#    # do not clear RPROMPT, let it persist
-#
-#    # kill child if necessary
-#    if [[ "${ASYNC_PROC}" != 0 ]]; then
-#        kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
-#    fi
-#
-#    # start background computation
-#    async &!
-#    ASYNC_PROC=$!
-#}
-#
-#async_build_prompt &!
-#
-#function TRAPUSR1() {
-#    # read from temp file
-#    RPROMPT="$(cat ${HOME}/.zsh_tmp_prompt)"
-#
-#    # reset proc number
-#    ASYNC_PROC=0
-#
-#    # redisplay
-#    zle && zle reset-prompt
-#}
-
 # added by travis gem
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
