@@ -35,16 +35,6 @@
 	# Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
 
-	# Wrapper for git push to enable a post-push hook
-	push-with-hooks = !"f() { \
-			local GIT_DIR_="$(git rev-parse --git-dir)" \
-				&& local BRANCH="$(git rev-parse --symbolic --abbrev-ref $(git symbolic-ref HEAD))" \
-				&& local POST_PUSH="$GIT_DIR_/hooks/post-push" \
-				&& git push "$@" \
-				&& test $? -eq 0 && test -x "$POST_PUSH" \
-				&& exec "$POST_PUSH" "$BRANCH"; \
-		}; f"
-
 [color]
 	ui = always
 
