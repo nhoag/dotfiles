@@ -146,3 +146,9 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
 let g:gutentags_cache_dir = '~/.vim/gutentags'
 " ==== End gutentags settings ====
 
+" https://superuser.com/a/750528
+if $VIM_CRONTAB == "true"
+  set nobackup
+  set nowritebackup
+endif
+
