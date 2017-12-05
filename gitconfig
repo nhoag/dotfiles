@@ -101,3 +101,6 @@
 	email = info@nathanielhoag.com
 	signingkey = 2D868EC7
 
+[include]
+	path = ~/.gitprivate
+
