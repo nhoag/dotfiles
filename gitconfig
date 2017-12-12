@@ -15,11 +15,11 @@
 
 	# Checkout a pull request from origin (of a github repository)
 	pr = !"f() { \
-			git fetch github pull/$1/head:pr-$1 \
+			git fetch ${2:=github} pull/$1/head:pr-$1 \
 				&& git checkout pr-$1; \
 		}; f"
 
-  # Sync changes from upstream to fork
+	# Sync changes from upstream to fork
 	sync = !"f() { \
 			git checkout master \
 				&& git fetch --all \
