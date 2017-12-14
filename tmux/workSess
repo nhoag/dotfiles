@@ -1,0 +1,8 @@
+new-window -n code-review
+send-keys -t code-review "code-review --recent --pending" Enter
+new-window -n entapps
+send-keys -t entapps "entapps" Enter
+new-window -n dots
+send-keys -t dots "dots" Enter
+new-window -n blog
+send-keys -t blog "blog" Enter
