@@ -13,7 +13,7 @@ function bs() {
 }
 
 # Remove line number from file.
-function rmline() {
+function rml() {
   local FILE=${2:-"${HOME}/.ssh/known_hosts"}
   local LINE=$1
   gsed -i -e "${LINE}d" "${FILE}"
