@@ -50,7 +50,7 @@ function fingerprints() {
 
 # HTTP Status info.
 function hs() {
-  curl -sk "http://httpstat.us/${1}"
+  curl -sk "https://httpstat.us/${1}"
   printf "\n"
 }
 
