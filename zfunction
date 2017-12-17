@@ -72,3 +72,40 @@ function rand() {
   echo
 }
 
+# Collapsed working directory.
+#
+# @see: https://stackoverflow.com/a/45336078
+function spwd {
+  paths=(${(s:/:)PWD})
+
+  cur_path='/'
+  cur_short_path='/'
+  for directory in ${paths[@]}
+  do
+    cur_dir=''
+    for (( i=0; i<${#directory}; i++ )); do
+      cur_dir+="${directory:$i:1}"
+      matching=("$cur_path"/"$cur_dir"*/)
+      if [[ ${#matching[@]} -eq 1 ]]; then
+        break
+      fi
+    done
+    cur_short_path+="$cur_dir/"
+    cur_path+="$directory/"
+  done
+
+  printf %q "${cur_short_path: : -1}"
+}
+
+# Collapsed FISH-style working directory.
+#
+# @see: https://github.com/robbyrussell/oh-my-zsh/blob/c3b072eace1ce19a48e36c2ead5932ae2d2e06d9/themes/fishy.zsh-theme#L3-L10
+_fishy_collapsed_wd() {
+  echo $(pwd | perl -pe '
+   BEGIN {
+      binmode STDIN,  ":encoding(UTF-8)";
+      binmode STDOUT, ":encoding(UTF-8)";
+   }; s|^$ENV{HOME}|~|g; s|/([^/.])[^/]*(?=/)|/$1|g; s|/\.([^/])[^/]*(?=/)|/.$1|g
+')
+}
+
