@@ -117,10 +117,10 @@ vmap k gk
 " Remove trailing whitespace on write.
 autocmd BufWritePre * :%s/\s\+$//e
 
-if &term =~ "xterm.*"
 " Improved pasting experience for macOS.
 "
 " @see: https://stackoverflow.com/a/7053522
+if &term =~ "(screen|xterm).*"
   let &t_ti = &t_ti . "\e[?2004h"
   let &t_te = "\e[?2004l" . &t_te
   function XTermPasteBegin(ret)
