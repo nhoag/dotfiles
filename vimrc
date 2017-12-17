@@ -1,4 +1,6 @@
-" https://github.com/junegunn/vim-plug
+" Use Vim-Plug plugin manager.
+"
+" @see: https://github.com/junegunn/vim-plug
 call plug#begin()
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'easymotion/vim-easymotion'
@@ -111,12 +113,13 @@ noremap N Nzz
 vmap j gj
 vmap k gk
 
-" Remove trailing whitespace on write
+" Remove trailing whitespace on write.
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Improved pasting.
-" @see http://stackoverflow.com/questions/5585129/pasting-code-into-terminal-window-into-vim-on-mac-os-x
 if &term =~ "xterm.*"
+" Improved pasting experience for macOS.
+"
+" @see: https://stackoverflow.com/a/7053522
   let &t_ti = &t_ti . "\e[?2004h"
   let &t_te = "\e[?2004l" . &t_te
   function XTermPasteBegin(ret)
@@ -136,17 +139,19 @@ noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 
 " ==== gutentags settings ====
-" Exclude css, html, js files from generating tag files
+" Exclude css, html, js files from generating tag files.
 let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
                             \ '*.phar', '*.ini', '*.rst', '*.md',
                             \ '*vendor/*/test*', '*vendor/*/Test*',
                             \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
                             \ '*var/cache*', '*var/log*']
-" Where to store tag files
+" Where to store tag files.
 let g:gutentags_cache_dir = '~/.vim/gutentags'
 " ==== End gutentags settings ====
 
-" https://superuser.com/a/750528
+" Allow adding cronjobs in macOS with Vim.
+"
+" @see: https://superuser.com/a/750528
 if $VIM_CRONTAB == "true"
   set nobackup
   set nowritebackup
