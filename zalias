@@ -4,7 +4,7 @@ if command -v gh > /dev/null; then
   eval "$(gh alias -s)"
 fi
 
-# create shell aliases for most-used git commands
+# Create shell aliases for most-used Git commands.
 alias st='git st'
 alias ct='git ct'
 alias lg='git log'
@@ -27,10 +27,12 @@ alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias nvi="nvim"
 
-# https://superuser.com/a/750528
+# Allow adding cronjobs in macOS with Vim.
+#
+# @see: https://superuser.com/a/750528
 alias crontab="export VIM_CRONTAB=true; /usr/bin/crontab"
 
-# Pass aliases to root account
+# Pass aliases to root account.
 alias sudo='sudo '
 
 if ls --color -d . &> /dev/null; then
@@ -41,9 +43,14 @@ if ls --group-directories-first &> /dev/null; then
   eval "$(alias -L ls)' --group-directories-first'"
 fi
 
+# Erase the clipboard.
+alias pbd="pbcopy </dev/null"
+
+# Quick computer lock up command.
+alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+
+# Set phpcs default options for Drupal.
 extensions='php,module,inc,install,test,profile,theme,js,css,info,txt,md'
 alias dcs="phpcs --standard=Drupal --extensions=${extensions}"
 alias dcbf="phpcbf --standard=Drupal --extensions=${extensions}"
 
-alias pbd="pbcopy </dev/null"
-alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
