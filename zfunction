@@ -63,7 +63,7 @@ function mcd() {
 #
 # Default: 15 characters.
 function rand() {
-  local LENGTH=$1
+  local LENGTH=${1:-15}
   date +%s \
     | shasum \
     | base64 \
