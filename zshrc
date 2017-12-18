@@ -97,19 +97,21 @@ autoload -Uz vcs_info
 # %m - In case of Git, show information about stashes
 # %u - Show unstaged changes in the repository
 # %c - Show staged changes in the repository
-zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' enable git
 # zstyle ':vcs_info:*' check-for-changes true
 # zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 zstyle ':vcs_info:*' formats " %{$fg_bold[yellow]%}%b%{$reset_color%}%c%u"
 # zstyle ':vcs_info:*' stagedstr " %{$fg[green]%}✔%{$reset_color%}"
 # zstyle ':vcs_info:*' unstagedstr " %{$fg[red]%}✘%{$reset_color%}"
 zstyle ':vcs_info:*' actionformats "%s→%b (%a)"
+
 precmd() {
   vcs_info
 }
+
 setopt prompt_subst
-GIT_PROMPT='${vcs_info_msg_0_}'
-PROMPT="%{$fg[blue]%}%/$GIT_PROMPT %{$fg[green]%}%# %{$reset_color%}"
+
+PROMPT='%{$fg[blue]%}$(_fishy_collapsed_wd)${vcs_info_msg_0_} %{$fg[green]%}%# %{$reset_color%}'
 
 if [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
   . $HOME/.nix-profile/etc/profile.d/nix.sh
