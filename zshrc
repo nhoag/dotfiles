@@ -1,5 +1,6 @@
 autoload -U colors && colors
-## Command history configuration
+
+# Command history configuration.
 if [ -z "$HISTFILE" ]; then
   HISTFILE=$HOME/.zsh_history
 fi
@@ -7,7 +8,7 @@ fi
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# Show history
+# Show history.
 case $HIST_STAMPS in
   "mm/dd/yyyy") alias history='fc -fl 1' ;;
   "dd.mm.yyyy") alias history='fc -El 1' ;;
@@ -26,16 +27,15 @@ setopt share_history # share command history data
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
+# Use Zgen package manager.
 if [[ ! -d $HOME/.modules/zgen ]]; then
   git clone https://github.com/tarjoilija/zgen.git ~/.modules/zgen
 fi
 
-# Zgen is "package manager" for zsh
 source ~/.modules/zgen/zgen.zsh
 
 if ! zgen saved; then
   echo "Creating a zgen save"
-  # plugins
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
   zgen load zsh-users/zsh-completions src
@@ -55,7 +55,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 zle -N edit-command-line
 
-# Default to vi mode in zsh
+# Default to vi mode in zsh.
 bindkey -v
 bindkey -M vicmd 'z' edit-command-line
 autoload -Uz edit-command-line
@@ -69,21 +69,21 @@ bindkey '^b' backward-word
 bindkey '^f' forward-word
 bindkey '^d' delete-word
 
-# bind UP and DOWN arrow keys
+# Bind UP and DOWN arrow keys.
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
-# bind UP and DOWN arrow keys (compatibility fallback
-# for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
+# Bind UP and DOWN arrow keys (compatibility fallback
+# for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users).
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# bind P and N for EMACS mode
+# Bind P and N for EMACS mode.
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
-# bind k and j for VI mode
+# Bind k and j for VI mode.
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
@@ -119,5 +119,6 @@ if [[ -f $HOME/.profile ]]; then
   . $HOME/.profile
 fi
 
-# added by travis gem
+# Added by Travis gem.
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
+
