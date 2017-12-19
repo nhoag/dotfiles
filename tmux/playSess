@@ -1,4 +1,0 @@
-new-window -n dots
-send-keys -t dots "dots" Enter
-new-window -n blog
-send-keys -t blog "blog" Enter
