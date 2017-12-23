@@ -1,3 +1,4 @@
+# Taps
 tap "thoughtbot/formulae"
 tap "homebrew/dupes"
 tap "homebrew/science"
@@ -11,6 +12,8 @@ tap "homebrew/services"
 tap "caskroom/versions"
 tap "caskroom/cask"
 tap "neovim/neovim"
+
+# Brews
 brew "ack"
 brew "apr"
 brew "apr-util"
@@ -68,8 +71,6 @@ brew "libyaml"
 brew "luajit"
 brew "msgpack"
 brew "ncdu"
-brew "node", link: false
-brew "node@6", link: true
 brew "numpy"
 brew "openssh"
 brew "percona-toolkit"
@@ -98,16 +99,29 @@ brew "watch"
 brew "wget"
 brew "wireshark"
 brew "zsh"
+
+# Node.js
+#
+# Linked Node.js must be last.
+brew "node", link: false
+brew "node@6", link: true
+
+# PHP
+#
+# Linked PHP must be last.
 brew "homebrew/php/composer"
+brew "homebrew/php/php56", link: false
 brew "homebrew/php/php56-msgpack"
 brew "homebrew/php/php56-oauth"
 brew "homebrew/php/php56-pcntl"
 brew "homebrew/php/php56-xdebug"
 brew "homebrew/php/php71", link: false
 brew "homebrew/php/php71-oauth"
-brew "homebrew/php/php72", link: false
+brew "homebrew/php/php72", link: true
 brew "homebrew/science/matplotlib"
 brew "thoughtbot/formulae/rcm"
+
+# Casks
 cask "gdal-framework"
 cask "gimp"
 cask "vagrant"
