@@ -11,7 +11,6 @@ tap "homebrew/services"
 tap "caskroom/versions"
 tap "caskroom/cask"
 tap "neovim/neovim"
-
 brew "ack"
 brew "apr"
 brew "apr-util"
@@ -77,6 +76,7 @@ brew "percona-toolkit"
 brew "pinentry-mac"
 brew "postgresql"
 brew "pv"
+brew "readline", link: true
 brew "ruby-build"
 brew "rbenv"
 brew "reattach-to-user-namespace"
@@ -108,7 +108,6 @@ brew "homebrew/php/php71-oauth"
 brew "homebrew/php/php72", link: false
 brew "homebrew/science/matplotlib"
 brew "thoughtbot/formulae/rcm"
-
 cask "gdal-framework"
 cask "gimp"
 cask "vagrant"
