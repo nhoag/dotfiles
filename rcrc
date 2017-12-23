@@ -1,0 +1,4 @@
+DOTFILES_DIRS="~/.dotfiles"
+EXCLUDES="*.md tmux"
+SYMLINK_DIRS="default"
+UNDOTTED="Brewfile"
