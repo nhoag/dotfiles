@@ -10,6 +10,7 @@ call plug#begin()
   Plug 'mileszs/ack.vim'
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree'
+  Plug 'sgur/vim-editorconfig'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
   Plug 'wikitopian/hardmode'
