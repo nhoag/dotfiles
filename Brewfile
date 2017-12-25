@@ -71,6 +71,9 @@ brew "libyaml"
 brew "luajit"
 brew "msgpack"
 brew "ncdu"
+brew "node", link: false
+brew "node@6"
+brew "node@8", link: true
 brew "numpy"
 brew "openssh"
 brew "percona-toolkit"
@@ -98,6 +101,7 @@ brew "vim"
 brew "watch"
 brew "wget"
 brew "wireshark"
+brew "yarn"
 brew "zsh"
 
 # Node.js
