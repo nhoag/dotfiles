@@ -6,7 +6,7 @@ if [ $HOME/.phpbrew/bashrc ]; then
   . $HOME/.phpbrew/bashrc
 fi
 
-for file in ~/.{ah_profile,alias,zacquia,zalias,zfunction,zexports,zopts,zpath,zprivate,zstyle}; do
+for file in ~/.{ah_profile,alias,work,function,export,path,private,zstyle}; do
   [[ -r "$file" ]] && [[ -f "$file" ]] && . "$file"
 done
 
