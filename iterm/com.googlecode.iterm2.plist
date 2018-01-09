@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>AboutToPasteTabsWithCancel</key>
@@ -17856,11 +17856,13 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>1930 219 620 392 1280 -280 1920 1058 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>333 226 796 473 0 0 1280 778 </string>
+	<string>333 148 796 473 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 24 1280 754 0 0 1280 778 </string>
+	<string>0 0 1280 778 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1283 -257 954 1035 1280 -280 1920 1058 </string>
+	<string>0 0 1280 778 0 0 1280 778 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>173 26 1170 752 0 0 1280 778 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -18674,7 +18676,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/nathaniel.hoag/.defaults</string>
+	<string>/Users/nathaniel.hoag/.iterm</string>
 	<key>PromptOnClose</key>
 	<true/>
 	<key>PromptOnQuit</key>
@@ -18694,7 +18696,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-12-17T01:50:25Z</date>
+	<date>2018-01-07T23:02:47Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
