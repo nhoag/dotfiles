@@ -37,6 +37,7 @@ brew "dnsmasq", restart_service: true
 brew "dos2unix"
 brew "emacs"
 brew "exercism"
+brew "ffmpeg"
 brew "freetype"
 brew "gawk"
 brew "geoip"
@@ -51,7 +52,6 @@ brew "go"
 brew "gpatch"
 brew "gpg-agent"
 brew "grep", args: ["with-default-names"]
-brew "htop"
 brew "hugo"
 brew "icu4c"
 brew "ipcalc"
@@ -70,10 +70,12 @@ brew "libunistring"
 brew "libusb"
 brew "libyaml"
 brew "luajit"
+brew "matplotlib"
 brew "mongodb"
 brew "mpfr"
 brew "msgpack"
 brew "ncdu"
+brew "numpy"
 brew "oniguruma"
 brew "openssh"
 brew "pcre"
@@ -98,7 +100,6 @@ brew "sqlite"
 brew "subversion"
 brew "sysdig"
 brew "telnet"
-brew "thoughtbot/formulae/rcm"
 brew "tmux"
 brew "tree"
 brew "unixodbc"
@@ -121,12 +122,12 @@ brew "node@6", link: true
 #
 # Linked PHP must be last.
 brew "homebrew/php/composer"
-brew "homebrew/php/php56", link: false
+brew "homebrew/php/php71", link: false
+brew "homebrew/php/php71-oauth"
+brew "homebrew/php/php72", link: false
+brew "homebrew/php/php56", link: true
 brew "homebrew/php/php56-msgpack"
 brew "homebrew/php/php56-oauth"
 brew "homebrew/php/php56-pcntl"
 brew "homebrew/php/php56-xdebug"
-brew "homebrew/php/php71", link: false
-brew "homebrew/php/php71-oauth"
-brew "homebrew/php/php72", link: true
 
