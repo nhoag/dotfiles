@@ -4,17 +4,17 @@ My personal dotfiles.
 
 ## Requirements
 
-**todo:** Flesh out requirements.
+* [Homebrew](https://brew.sh)
 
 ## Install
 
-**todo:** Flesh out install instructions.
-
-```
-git clone https://github.com/nhoag/dotfiles.git ~/.dotfiles
+```bash
+git clone --separate-git-dir=~/.dotfiles git@github.com:nhoag/dotfiles.git ~
 ```
 
 ## Update
 
-**todo:** Flesh out update instructions.
+```bash
+cd && dots pull
+```
 
