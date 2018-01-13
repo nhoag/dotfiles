@@ -23,6 +23,7 @@ alias branch='git branch'
 alias rebase='git rebase'
 alias amend='git commit -C HEAD --amend'
 
+alias vi="vim"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias nvi="nvim"
