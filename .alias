@@ -61,5 +61,5 @@ alias dcbf="phpcbf --standard=Drupal --extensions=${extensions}"
 # directory.
 #
 # @see: https://news.ycombinator.com/item?id=11070797
-alias dots='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
