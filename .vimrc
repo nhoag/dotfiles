@@ -68,7 +68,6 @@ set tabpagemax=50              " Maximum number of tab pages to open.
 set tabstop=2                  " Visual display of tabs.
 set title                      " Display a document title.
 set undofile                   " Name of the undo file.
-" @todo: Switch from viminfo to shada.
 set viminfo='100,f1            " Save up to 100 marks, enable capital marks.
 set visualbell                 " Use visual bell instead of beeping.
 set wildmenu                   " Enhanced command-line completion.
@@ -132,7 +131,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Improved pasting experience for macOS.
 "
 " @see: https://stackoverflow.com/a/7053522
-if &term =~ "xterm.*"
+if has('mac')
   let &t_ti = &t_ti . "\e[?2004h"
   let &t_te = "\e[?2004l" . &t_te
   function XTermPasteBegin(ret)
