@@ -41,7 +41,7 @@ if ls --color -d . &> /dev/null; then
 fi
 
 if ls --group-directories-first &> /dev/null; then
-  eval "$(alias -L ls)' --group-directories-first'"
+  alias "$(alias ls) --group-directories-first"
 fi
 
 # Erase the clipboard.
