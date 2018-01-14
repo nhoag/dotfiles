@@ -113,14 +113,8 @@ setopt prompt_subst
 
 PROMPT='%{$fg[blue]%}$(_fishy_collapsed_wd)${vcs_info_msg_0_} %{$fg[green]%}%# %{$reset_color%}'
 
-if [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
-  . $HOME/.nix-profile/etc/profile.d/nix.sh
-fi
-
-if [[ -f $HOME/.profile ]]; then
-  . $HOME/.profile
-fi
-
+[[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+[[ -f "${HOME}/.profile" ]] && . "${HOME}/.profile"
 # Added by Travis gem.
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
 
