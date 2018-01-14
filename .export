@@ -1,4 +1,6 @@
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+if [[ "$OSTYPE" =~ darwin* ]]; then
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi
 
 # Editor
 export EDITOR=vim
@@ -19,8 +21,8 @@ export PIP_REQUIRE_VIRTUALENV=false
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export HIST_IGNORE_ALL_DUPS=1
 
-# Set `open` tool as default `BROWSER` on OS X.
-if [[ "$OSTYPE" == darwin* ]]; then
+# Set `open` tool as default `BROWSER` on macOS.
+if [[ "$OSTYPE" =~ darwin* ]]; then
   export BROWSER='open'
 fi
 

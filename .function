@@ -1,27 +1,39 @@
 # Homebrew update, upgrade, cleanup, doctor.
-function bs() {
-  local LOGFILE="/tmp/brewlog-$(/bin/date -j '+%Y%m%d')"
-  local YELLOW="\033[1;33m"
-  local NC="\033[0m"
+if [[ "$OSTYPE" =~ darwin* ]]; then
+  function bs() {
+    local LOGFILE="/tmp/brewlog-$(/bin/date -j '+%Y%m%d')"
+    local YELLOW="\033[1;33m"
+    local NC="\033[0m"
 
-  echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
-  for command in update upgrade cleanup doctor; do
-    echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
-    brew "$command" 2>&1 \
-      | tee -a "$LOGFILE"
-  done
-}
+    echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
+    for command in update upgrade cleanup doctor; do
+      echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
+      brew "$command" 2>&1 \
+        | tee -a "$LOGFILE"
+    done
+  }
+fi
 
 # Remove line number from file.
 function rml() {
   local FILE=${2:-"${HOME}/.ssh/known_hosts"}
   local LINE=$1
-  gsed -i -e "${LINE}d" "${FILE}"
+  if [[ "$OSTYPE" =~ darwin* ]]; then
+    local sedcmd=gsed
+  else
+    local sedcmd=sed
+  fi
+  "$sedcmd" -i -e "${LINE}d" "${FILE}"
 }
 
 # Open Drupal project webpage.
 function dp() {
-  open "https://www.drupal.org/project/${1}"
+  if [[ "$OSTYPE" =~ darwin* ]]; then
+    local opencmd=open
+  else
+    local opencmd=xdg-open
+  fi
+  "$opencmd" "https://www.drupal.org/project/${1}"
 }
 
 # Fast Vim:Shell Switching.

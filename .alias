@@ -23,6 +23,7 @@ alias branch='git branch'
 alias rebase='git rebase'
 alias amend='git commit -C HEAD --amend'
 
+# Vim aliases.
 alias vi="vim"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
@@ -31,29 +32,33 @@ alias nvi="nvim"
 # Allow adding cronjobs in macOS with Vim.
 #
 # @see: https://superuser.com/a/750528
-alias crontab="export VIM_CRONTAB=true; /usr/bin/crontab"
+if [[ "$OSTYPE" =~ darwin* ]]; then
+  alias crontab="export VIM_CRONTAB=true; /usr/bin/crontab"
+fi
 
 # Pass aliases to root account.
 alias sudo='sudo '
 
-if ls --color -d . &> /dev/null; then
-  alias ls='ls --color=tty' || alias ls='ls -G'
+if [[ "$OSTYPE" =~ darwin* ]]; then
+  alias ls='gls --color=tty --group-directories-first'
+else
+  alias ls='ls --color=tty --group-directories-first'
 fi
 
-if ls --group-directories-first &> /dev/null; then
-  alias "$(alias ls) --group-directories-first"
+# Erase the clipboard on macOS.
+if [[ "$OSTYPE" =~ darwin* ]]; then
+  alias pbd="pbcopy </dev/null"
 fi
 
-# Erase the clipboard.
-alias pbd="pbcopy </dev/null"
-
-# Quick computer lock up command.
-alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+# Quick computer lock command on macOS.
+if [[ "$OSTYPE" =~ darwin* ]]; then
+  alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+fi
 
 # Set phpcs default options for Drupal.
-extensions='php,module,inc,install,test,profile,theme,js,css,info,txt,md'
-alias dcs="phpcs --standard=Drupal --extensions=${extensions}"
-alias dcbf="phpcbf --standard=Drupal --extensions=${extensions}"
+phpcs_exts='php,module,inc,install,test,profile,theme,js,css,info,txt,md'
+alias dcs="phpcs --standard=Drupal --extensions=${phpcs_exts}"
+alias dcbf="phpcbf --standard=Drupal --extensions=${phpcs_exts}"
 
 # Support for dotfiles.
 #
