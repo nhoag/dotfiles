@@ -18,6 +18,7 @@ alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dots config status.showUntrackedFiles no
 dots checkout .
 chsh -s $(which zsh)
+zsh
 ```
 
 ## Update
