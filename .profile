@@ -1,8 +1,6 @@
-if [ -f /usr/local/share/zsh/site-functions/_aws ]; then
-  . /usr/local/share/zsh/site-functions/_aws
+if [[ -n "$ZSH_VERSION" ]]; then
+  if [[ -f "$HOME/.zshrc" ]]; then
+    . "$HOME/.zshrc"
+  fi
 fi
-
-for file in ~/.{ah_profile,alias,work,function,export,path,private,zstyle}; do
-  [[ -r "$file" ]] && [[ -f "$file" ]] && . "$file"
-done
 

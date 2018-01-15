@@ -113,8 +113,15 @@ setopt prompt_subst
 
 PROMPT='%{$fg[blue]%}$(_fishy_collapsed_wd)${vcs_info_msg_0_} %{$fg[green]%}%# %{$reset_color%}'
 
+if [[ -f /usr/local/share/zsh/site-functions/_aws ]]; then
+  . /usr/local/share/zsh/site-functions/_aws
+fi
+
+for file in ~/.{ah_profile,alias,work,function,export,path,private,zstyle}; do
+  [[ -r "$file" ]] && [[ -f "$file" ]] && . "$file"
+done
+
 [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-[[ -f "${HOME}/.profile" ]] && . "${HOME}/.profile"
 # Added by Travis gem.
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
 
