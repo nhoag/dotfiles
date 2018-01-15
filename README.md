@@ -13,8 +13,7 @@ My personal dotfiles.
 
 ```bash
 cd
-git clone --separate-git-dir=$HOME/.dotfiles git@github.com:nhoag/dotfiles.git $HOME/dotfiles-tmp
-rm -r $HOME/dotfiles-tmp
+git clone --separate-git-dir=$HOME/.dotfiles git@github.com:nhoag/dotfiles.git $(mktemp -d)
 alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dots config status.showUntrackedFiles no
 dots checkout .
