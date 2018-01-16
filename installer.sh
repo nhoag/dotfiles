@@ -31,10 +31,10 @@ function install() {
 
 function requirements() {
 
-  [[ -d "$HOME/$DOTS_DIR" ]] && { echo 'Already installed.'; return; }
+  [[ -d "$HOME/$DOTS_DIR" ]] && { echo 'Already installed.'; exit 1; }
 
   for cmd in curl git vim zsh; do
-    command -v $cmd >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed.  Aborting."; return; }
+    command -v $cmd >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed. Aborting."; exit 1; }
   done
 
 }
