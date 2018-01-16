@@ -17,11 +17,9 @@ function dots_install() {
     git@github.com:nhoag/dotfiles.git \
     $(mktemp -d)
 
-  alias dots='git --git-dir="$HOME/$DOTS_DIR" --work-tree="$HOME"'
+  git --git-dir="$HOME/$DOTS_DIR" --work-tree="$HOME" config status.showUntrackedFiles no
 
-  dots config status.showUntrackedFiles no
-
-  dots checkout .
+  git --git-dir="$HOME/$DOTS_DIR" --work-tree="$HOME" checkout .
 
   chsh -s $(which zsh)
 
