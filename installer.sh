@@ -12,9 +12,9 @@ function dots_install() {
 
   cd
 
-  git clone /
-    --separate-git-dir="$HOME/$DOTS_DIR" /
-    git@github.com:nhoag/dotfiles.git /
+  git clone \
+    --separate-git-dir="$HOME/$DOTS_DIR" \
+    git@github.com:nhoag/dotfiles.git \
     $(mktemp -d)
 
   alias dots='git --git-dir="$HOME/$DOTS_DIR" --work-tree="$HOME"'
