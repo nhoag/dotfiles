@@ -12,18 +12,15 @@ My personal dotfiles.
 ## Install
 
 ```bash
-cd
-git clone --separate-git-dir=$HOME/.dotfiles git@github.com:nhoag/dotfiles.git $(mktemp -d)
-alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-dots config status.showUntrackedFiles no
-dots checkout .
-chsh -s $(which zsh)
-zsh
+curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/master/installer.sh
+# Visually inspect the file.
+chmod +x ./installer.sh
+./installer.sh
 ```
 
 ## Update
 
 ```bash
-cd && dots pull
+dots pull
 ```
 
