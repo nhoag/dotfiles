@@ -8,6 +8,8 @@ function install() {
 
   local DOTS_DIR=${1:-'.dotfiles'}
 
+  [[ -d "$HOME/$DOTS_DIR" ]] && { echo 'Already installed.'; return; }
+
   requirements
 
   cd
@@ -30,8 +32,6 @@ function install() {
 }
 
 function requirements() {
-
-  [[ -d "$HOME/$DOTS_DIR" ]] && { echo 'Already installed.'; exit 1; }
 
   for cmd in curl git vim zsh; do
     command -v $cmd >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed. Aborting."; exit 1; }
