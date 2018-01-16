@@ -39,5 +39,5 @@ function requirements() {
 
 }
 
-dots_install "$@"
+install "$@"
 
