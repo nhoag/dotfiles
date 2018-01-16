@@ -13,7 +13,7 @@ My personal dotfiles.
 
 ```bash
 curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/master/installer.sh
-# Visually inspect the file.
+# Visually inspect the file, then:
 chmod +x ./installer.sh
 ./installer.sh
 ```
