@@ -20,13 +20,13 @@ function install() {
   git clone \
     --separate-git-dir="$HOME/$DOTS_DIR" \
     git@github.com:nhoag/dotfiles.git \
-    $(mktemp -d)
+    "$(mktemp -d)"
 
   dots config status.showUntrackedFiles no
   dots checkout .
 
   # Switch the default shell to zsh (requires sudo).
-  chsh -s $(which zsh)
+  chsh -s "$(which zsh)"
 
   # Use zsh right now (and trigger zgen build).
   zsh
@@ -55,7 +55,7 @@ function main() {
 # Check requirements are satisfied.
 function requirements() {
   for cmd in "$@"; do
-    command -v $cmd >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed. Aborting."; exit 1; }
+    command -v "$cmd" >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed. Aborting."; exit 1; }
   done
 }
 

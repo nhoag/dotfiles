@@ -4,19 +4,19 @@ export GOPATH=$HOME/go
 path=(
   ./bin
   ./node_modules/.bin
-  $HOME/.cabal/bin
+  "$HOME"/.cabal/bin
   /usr/local/heroku/bin
-  $HOME/.rbenv/shims
-  $HOME/.rbenv/bin
-  $HOME/.bin
-  $HOME/bin
-  $HOME/.composer/vendor/bin
-  $HOME/src/Support-Tools/bin
-  $HOME/src/mrt/bin
-  $GOPATH/bin
+  "$HOME"/.rbenv/shims
+  "$HOME"/.rbenv/bin
+  "$HOME"/.bin
+  "$HOME"/bin
+  "$HOME"/.composer/vendor/bin
+  "$HOME"/src/Support-Tools/bin
+  "$HOME"/src/mrt/bin
+  "$GOPATH"/bin
   /usr/local/opt/llvm/bin
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
   /usr/X11/bin
-  $path
+  "$path"
 )

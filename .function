@@ -55,20 +55,20 @@ bindkey '^Z' fancy-ctrl-z
 function fingerprints() {
   local hash=${2:-'md5'}
   local file="$1"
-  while read l; do
-    [[ -n $l && ${l###} = $l ]] && ssh-keygen -E "${hash}" -l -f /dev/stdin <<<$l
-  done < $file
+  while read -r l; do
+    [[ -n $l && ${l###} = "$l" ]] && ssh-keygen -E "${hash}" -l -f /dev/stdin <<<"$l"
+  done < "$file"
 }
 
 # HTTP Status info.
 function hs() {
   curl -sk "https://httpstat.us/${1}"
-  printf "\n"
+  echo
 }
 
 # Create directory and cd.
 function mcd() {
-  mkdir -p "$1" && cd "$1"
+  mkdir -p "$1" && cd "$1" || return 1
 }
 
 # Generate a random alpha-numeric string.
@@ -79,7 +79,7 @@ function rand() {
   date +%s \
     | shasum \
     | base64 \
-    | head -c $LENGTH \
+    | head -c "$LENGTH" \
     | tr '[:upper:]' '[:lower:]'
   echo
 }
@@ -92,7 +92,7 @@ function spwd {
 
   cur_path='/'
   cur_short_path='/'
-  for directory in ${paths[@]}
+  for directory in "${paths[@]}"
   do
     cur_dir=''
     for (( i=0; i<${#directory}; i++ )); do
@@ -113,11 +113,11 @@ function spwd {
 #
 # @see: https://github.com/robbyrussell/oh-my-zsh/blob/c3b072eace1ce19a48e36c2ead5932ae2d2e06d9/themes/fishy.zsh-theme#L3-L10
 _fishy_collapsed_wd() {
-  echo $(pwd | perl -pe '
-   BEGIN {
+  pwd | perl -pe '
+    BEGIN {
       binmode STDIN,  ":encoding(UTF-8)";
       binmode STDOUT, ":encoding(UTF-8)";
-   }; s|^$ENV{HOME}|~|g; s|/([^/.])[^/]*(?=/)|/$1|g; s|/\.([^/])[^/]*(?=/)|/.$1|g
-')
+    }; s|^$ENV{HOME}|~|g; s|/([^/.])[^/]*(?=/)|/$1|g; s|/\.([^/])[^/]*(?=/)|/.$1|g
+  '
 }
 
