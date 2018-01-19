@@ -5,3 +5,5 @@ addons:
     packages:
     - zsh
 
+script:
+- shellcheck .alias .export .path .profile .zshrc
