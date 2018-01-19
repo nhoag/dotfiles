@@ -1,0 +1,7 @@
+addons:
+  apt:
+    packages:
+    - curl
+    - git
+    - vim
+    - zsh
