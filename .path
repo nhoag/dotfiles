@@ -18,5 +18,5 @@ path=(
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
   /usr/X11/bin
-  "$path"
+  $path
 )
