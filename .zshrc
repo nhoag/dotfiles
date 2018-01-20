@@ -113,6 +113,19 @@ setopt prompt_subst
 
 PROMPT='%{$fg[blue]%}$(_fishy_collapsed_wd)${vcs_info_msg_0_} %{$fg[green]%}%# %{$reset_color%}'
 
+# Fast Vim:Shell Switching.
+function fancy-ctrl-z() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
 if [[ -f /usr/local/share/zsh/site-functions/_aws ]]; then
   . /usr/local/share/zsh/site-functions/_aws
 fi

@@ -40,24 +40,10 @@ function dp() {
   "$opencmd" "https://www.drupal.org/project/${1}"
 }
 
-# Fast Vim:Shell Switching.
-function fancy-ctrl-z() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    # shellcheck disable=SC2034
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-# SSH Public Key Fingerprints.
+# SSH Public Key Fingerprint.
 #
 # @see: https://serverfault.com/a/413247
-function fingerprints() {
+function fingerprint() {
   local hash=${2:-'md5'}
   local file="$1"
   while read -r l; do
