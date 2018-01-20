@@ -34,8 +34,10 @@ function rml() {
 function dp() {
   if [[ "$OSTYPE" =~ darwin* ]]; then
     local opencmd=open
-  else
+  elif command -v xdg-open; then
     local opencmd=xdg-open
+  else
+    local opencmd=echo
   fi
   "$opencmd" "https://www.drupal.org/project/${1}"
 }
