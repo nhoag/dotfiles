@@ -1,3 +1,5 @@
+# shellcheck disable=SC2206
+
 export GOPATH=$HOME/go
 
 # Set the list of directories that Zsh searches for programs.

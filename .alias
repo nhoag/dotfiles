@@ -55,7 +55,9 @@ fi
 
 # Set phpcs default options for Drupal.
 phpcs_exts='php,module,inc,install,test,profile,theme,js,css,info,txt,md'
+# shellcheck disable=SC2139
 alias dcs="phpcs --standard=Drupal --extensions=${phpcs_exts}"
+# shellcheck disable=SC2139
 alias dcbf="phpcbf --standard=Drupal --extensions=${phpcs_exts}"
 
 # Support for dotfiles.
