@@ -40,7 +40,10 @@ function main() {
 
   local DOTS_DIR=${1:-'.dotfiles'}
 
-  [[ -d "$HOME/$DOTS_DIR" ]] && { echo 'Already installed.'; return; }
+  [[ -d "$HOME/$DOTS_DIR" ]] && {
+    echo 'Already installed.'
+    return
+  }
 
   requirements \
     curl \
@@ -55,9 +58,11 @@ function main() {
 # Check requirements are satisfied.
 function requirements() {
   for cmd in "$@"; do
-    command -v "$cmd" >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed. Aborting."; exit 1; }
+    command -v "$cmd" >/dev/null 2>&1 || {
+      echo >&2 "I require $cmd but it's not installed. Aborting."
+      exit 1
+    }
   done
 }
 
 main "$@"
-

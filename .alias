@@ -1,4 +1,4 @@
-if command -v gh > /dev/null; then
+if command -v gh >/dev/null; then
   eval "$(gh alias -s)"
 fi
 
@@ -67,4 +67,3 @@ alias dcbf="phpcbf --standard=Drupal --extensions=${phpcs_exts}"
 #
 # @see: https://news.ycombinator.com/item?id=11070797
 alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-

@@ -15,4 +15,12 @@ script:
     .path \
     .profile \
     installer.sh
+- |
+  shfmt -i 2 -l \
+    .alias \
+    .export \
+    .function \
+    .path \
+    .profile \
+    installer.sh
 

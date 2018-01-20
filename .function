@@ -12,8 +12,8 @@ if [[ "$OSTYPE" =~ darwin* ]]; then
     for command in update upgrade cleanup doctor; do
       # shellcheck disable=SC2028
       echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
-      brew "$command" 2>&1 \
-        | tee -a "$LOGFILE"
+      brew "$command" 2>&1 |
+        tee -a "$LOGFILE"
     done
   }
 fi
@@ -61,8 +61,8 @@ function fingerprints() {
   local hash=${2:-'md5'}
   local file="$1"
   while read -r l; do
-    [[ -n $l && ${l###} = "$l" ]] && ssh-keygen -E "${hash}" -l -f /dev/stdin <<<"$l"
-  done < "$file"
+    [[ -n $l && ${l###} == "$l" ]] && ssh-keygen -E "${hash}" -l -f /dev/stdin <<<"$l"
+  done <"$file"
 }
 
 # HTTP Status info.
@@ -81,38 +81,12 @@ function mcd() {
 # Default: 15 characters.
 function rand() {
   local LENGTH=${1:-15}
-  date +%s \
-    | shasum \
-    | base64 \
-    | head -c "$LENGTH" \
-    | tr '[:upper:]' '[:lower:]'
+  date +%s |
+    shasum |
+    base64 |
+    head -c "$LENGTH" |
+    tr '[:upper:]' '[:lower:]'
   echo
-}
-
-# Collapsed working directory.
-#
-# @see: https://stackoverflow.com/a/45336078
-function spwd {
-  # shellcheck disable=SC2206
-  paths=(${(s:/:)PWD})
-
-  cur_path='/'
-  cur_short_path='/'
-  for directory in "${paths[@]}"
-  do
-    cur_dir=''
-    for (( i=0; i<${#directory}; i++ )); do
-      cur_dir+="${directory:$i:1}"
-      matching=("$cur_path"/"$cur_dir"*/)
-      if [[ ${#matching[@]} -eq 1 ]]; then
-        break
-      fi
-    done
-    cur_short_path+="$cur_dir/"
-    cur_path+="$directory/"
-  done
-
-  printf %q "${cur_short_path: : -1}"
 }
 
 # Collapsed FISH-style working directory.
@@ -126,4 +100,3 @@ _fishy_collapsed_wd() {
     }; s|^$ENV{HOME}|~|g; s|/([^/.])[^/]*(?=/)|/$1|g; s|/\.([^/])[^/]*(?=/)|/.$1|g
   '
 }
-

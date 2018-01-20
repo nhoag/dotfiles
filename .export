@@ -25,4 +25,3 @@ export HIST_IGNORE_ALL_DUPS=1
 if [[ "$OSTYPE" =~ darwin* ]]; then
   export BROWSER='open'
 fi
-
