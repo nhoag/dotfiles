@@ -3,7 +3,7 @@ language: shell
 addons:
   apt:
     packages:
-    - openssh
+    - openssh-client
     - zsh
 
 script:
