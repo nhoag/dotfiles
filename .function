@@ -1,12 +1,16 @@
+# shellcheck disable=SC1117
+
 # Homebrew update, upgrade, cleanup, doctor.
 if [[ "$OSTYPE" =~ darwin* ]]; then
   function bs() {
+    # shellcheck disable=SC2155
     local LOGFILE="/tmp/brewlog-$(/bin/date -j '+%Y%m%d')"
     local YELLOW="\033[1;33m"
     local NC="\033[0m"
 
     echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
     for command in update upgrade cleanup doctor; do
+      # shellcheck disable=SC2028
       echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
       brew "$command" 2>&1 \
         | tee -a "$LOGFILE"
@@ -39,6 +43,7 @@ function dp() {
 # Fast Vim:Shell Switching.
 function fancy-ctrl-z() {
   if [[ $#BUFFER -eq 0 ]]; then
+    # shellcheck disable=SC2034
     BUFFER="fg"
     zle accept-line
   else
@@ -88,6 +93,7 @@ function rand() {
 #
 # @see: https://stackoverflow.com/a/45336078
 function spwd {
+  # shellcheck disable=SC2206
   paths=(${(s:/:)PWD})
 
   cur_path='/'
