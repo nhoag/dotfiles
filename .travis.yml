@@ -6,7 +6,8 @@ addons:
     - zsh
 
 script:
-- shellcheck \
+- |
+  shellcheck \
     --exclude=SC2148 \
     .alias \
     .export \
