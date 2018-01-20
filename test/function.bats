@@ -2,6 +2,15 @@
 
 source "${BATS_TEST_DIRNAME}/../.function"
 
+@test "dp exists" {
+  command -v dp
+}
+
+@test "dp views result" {
+  run dp views
+  [ "$output" = "https://www.drupal.org/project/views" ]
+}
+
 @test "ssh-keygen exists" {
   command -v ssh-keygen
 }
