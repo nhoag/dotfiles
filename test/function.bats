@@ -6,10 +6,9 @@ source "${BATS_TEST_DIRNAME}/../.function"
   command -v dp
 }
 
-@test "dp views result" {
+@test "dp views status" {
   run dp views
-  echo "$output"
-  [ "$output" = "https://www.drupal.org/project/views" ]
+  [ "$status" -eq 0 ]
 }
 
 @test "ssh-keygen exists" {
@@ -36,6 +35,11 @@ source "${BATS_TEST_DIRNAME}/../.function"
 
 @test "hs exists" {
   command -v hs
+}
+
+@test "hs 200 status" {
+  run hs 200
+  [ "$status" -eq 0 ]
 }
 
 @test "hs 301 result" {
