@@ -6,5 +6,12 @@ addons:
     - zsh
 
 script:
-- shellcheck --exclude=SC2148 .alias .export .path .profile
+- shellcheck \
+    --exclude=SC2148 \
+    .alias \
+    .export \
+    .function \
+    .path \
+    .profile \
+    installer.sh
 
