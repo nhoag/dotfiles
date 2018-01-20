@@ -30,5 +30,5 @@ source "${BATS_TEST_DIRNAME}/../.function"
 
 @test "hs 301 result" {
   run hs 301
-  [ "output" = '301 Moved Permanently' ]
+  [ "output" = "301 Moved Permanently" ]
 }
