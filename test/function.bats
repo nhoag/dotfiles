@@ -8,6 +8,7 @@ source "${BATS_TEST_DIRNAME}/../.function"
 
 @test "dp views result" {
   run dp views
+  echo "$output"
   [ "$output" = "https://www.drupal.org/project/views" ]
 }
 
