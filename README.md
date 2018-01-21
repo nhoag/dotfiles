@@ -1,5 +1,7 @@
 # Dotfiles
 
+[![Build Status](https://travis-ci.org/nhoag/dotfiles.svg?branch=master)](https://travis-ci.org/nhoag/dotfiles)
+
 My personal dotfiles.
 
 ## Requirements
