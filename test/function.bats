@@ -28,3 +28,12 @@ source "${BATS_TEST_DIRNAME}/../.function"
   run hs 301
   [ "$output" = "301 Moved Permanently" ]
 }
+
+@test "rand exists" {
+  command -v rand
+}
+
+@test "rand status" {
+  run rand
+  [ "$status" -eq 0 ]
+}
