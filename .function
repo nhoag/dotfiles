@@ -9,7 +9,7 @@ if [[ "$OSTYPE" =~ darwin* ]]; then
     local NC="\033[0m"
 
     echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
-    for command in update upgrade cleanup doctor; do
+    for command in update tap upgrade cleanup doctor; do
       # shellcheck disable=SC2028
       echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
       brew "$command" 2>&1 |
