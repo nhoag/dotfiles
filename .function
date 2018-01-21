@@ -42,17 +42,6 @@ function dp() {
   "$opencmd" "https://www.drupal.org/project/${1}"
 }
 
-# SSH Public Key Fingerprint.
-#
-# @see: https://serverfault.com/a/413247
-function fingerprint() {
-  local hash=${2:-'md5'}
-  local file="$1"
-  while read -r l; do
-    [[ -n $l && ${l###} == "$l" ]] && ssh-keygen -E "${hash}" -l -f /dev/stdin <<<"$l"
-  done <"$file"
-}
-
 # HTTP Status info.
 function hs() {
   curl -sk "https://httpstat.us/${1}"
