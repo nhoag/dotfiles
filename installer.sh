@@ -32,7 +32,7 @@ function install() {
 
   # Switch the default shell to zsh (requires sudo) - no effect until login.
   # Disable for CI.
-  if [[ ! -z "$CI" ]]; then
+  if [[ -z "$CI" ]]; then
     chsh -s "$(which zsh)"
   fi
 
