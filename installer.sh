@@ -25,8 +25,11 @@ function install() {
   dots config status.showUntrackedFiles no
   dots checkout .
 
-  # Switch the default shell to zsh (requires sudo).
-  chsh -s "$(which zsh)"
+  # Switch the default shell to zsh (requires sudo) - no effect until login.
+  # Disable for CI.
+  if [[ ! -z "$CI" ]]; then
+    chsh -s "$(which zsh)"
+  fi
 
   # Use zsh right now (and trigger zgen build).
   zsh
