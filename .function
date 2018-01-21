@@ -18,18 +18,6 @@ if [[ "$OSTYPE" =~ darwin* ]]; then
   }
 fi
 
-# Remove line number from file.
-function rml() {
-  local FILE=${2:-"${HOME}/.ssh/known_hosts"}
-  local LINE=$1
-  if [[ "$OSTYPE" =~ darwin* ]]; then
-    local sedcmd=gsed
-  else
-    local sedcmd=sed
-  fi
-  "$sedcmd" -i -e "${LINE}d" "${FILE}"
-}
-
 # Open Drupal project webpage.
 function dp() {
   if [[ "$OSTYPE" =~ darwin* ]]; then
@@ -64,6 +52,18 @@ function rand() {
     head -c "$LENGTH" |
     tr '[:upper:]' '[:lower:]'
   echo
+}
+
+# Remove line number from file.
+function rml() {
+  local FILE=${2:-"${HOME}/.ssh/known_hosts"}
+  local LINE=$1
+  if [[ "$OSTYPE" =~ darwin* ]]; then
+    local sedcmd=gsed
+  else
+    local sedcmd=sed
+  fi
+  "$sedcmd" -i -e "${LINE}d" "${FILE}"
 }
 
 # Collapsed FISH-style working directory.
