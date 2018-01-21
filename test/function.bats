@@ -25,6 +25,15 @@ source "${BATS_TEST_DIRNAME}/../.function"
   [ "$output" = "301 Moved Permanently" ]
 }
 
+@test "mcd exists" {
+  command -v mcd
+}
+
+@test "mcd status" {
+  run mcd /tmp/test01/test02
+  [ "$status" -eq 0 ]
+}
+
 @test "rand exists" {
   command -v rand
 }
