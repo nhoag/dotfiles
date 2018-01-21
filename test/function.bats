@@ -37,3 +37,12 @@ source "${BATS_TEST_DIRNAME}/../.function"
   run rand
   [ "$status" -eq 0 ]
 }
+
+@test "rml exists" {
+  command -v rml
+}
+
+@test "rml status" {
+  run rml 2 "${BATS_TEST_DIRNAME}/test.txt"
+  [ "$status" -eq 0 ]
+}
