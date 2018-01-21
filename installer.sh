@@ -17,9 +17,14 @@ function install() {
   cd
 
   # Clone to a throw-away location.
+  if [[ -z "$CI" ]]; then
+    REPO_PREFIX='git@github.com:'
+  else
+    REPO_PREFIX='https://github.com/'
+  fi
   git clone \
     --separate-git-dir="$HOME/$DOTS_DIR" \
-    git@github.com:nhoag/dotfiles.git \
+    "$REPO_PREFIX"nhoag/dotfiles.git \
     "$(mktemp -d)"
 
   dots config status.showUntrackedFiles no
