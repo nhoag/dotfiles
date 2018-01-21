@@ -24,4 +24,5 @@ script:
     .profile \
     installer.sh
 - bats test
+- ./installer.sh
 
