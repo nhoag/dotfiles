@@ -36,12 +36,12 @@ function hs() {
   echo
 }
 
-# Create directory and cd.
+# Make directory and change directory.
 function mcd() {
   mkdir -p "$1" && cd "$1" || return 1
 }
 
-# Generate a random alpha-numeric string.
+# Generate a "random" alpha-numeric string.
 #
 # Default: 15 characters.
 function rand() {
