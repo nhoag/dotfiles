@@ -11,10 +11,6 @@ source "${BATS_TEST_DIRNAME}/../.function"
   [ "$status" -eq 0 ]
 }
 
-@test "ssh-keygen exists" {
-  command -v ssh-keygen
-}
-
 @test "hs exists" {
   command -v hs
 }
