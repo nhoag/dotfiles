@@ -6,7 +6,6 @@ addons:
     - zsh
 
 script:
-- zsh -n .zshrc
 - |
   shellcheck \
     --exclude=SC2148 \
