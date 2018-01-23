@@ -26,6 +26,7 @@ setopt inc_append_history
 setopt share_history # share command history data
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
 
 # Use Zgen package manager.
 if [[ ! -d $HOME/.modules/zgen ]]; then
