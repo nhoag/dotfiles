@@ -59,14 +59,3 @@ phpcs_exts='php,module,inc,install,test,profile,theme,js,css,info,txt,md'
 alias dcs="phpcs --standard=Drupal --extensions=${phpcs_exts}"
 # shellcheck disable=SC2139
 alias dcbf="phpcbf --standard=Drupal --extensions=${phpcs_exts}"
-
-# Git wrapper for dotfiles.
-#
-# Use 'dots' as invocation for 'git' in the context of dotfiles in the home
-# directory.
-#
-# @see: https://news.ycombinator.com/item?id=11070797
-#
-# @todo: Move to a function and disable `dots add .` along the lines of:
-# https://stackoverflow.com/a/25886149
-alias dots='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

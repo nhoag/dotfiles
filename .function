@@ -18,6 +18,22 @@ if [[ "$OSTYPE" =~ darwin* ]]; then
   }
 fi
 
+# Git wrapper for dotfiles.
+#
+# Use 'dots' as invocation for 'git' in the context of dotfiles in the home
+# directory.
+#
+# @see: https://news.ycombinator.com/item?id=11070797
+# @see: https://stackoverflow.com/a/25886149
+function dots() {
+  if [[ ( "$1" == "add" || "$1" == "stage" ) && "$2" == "." ]]; then
+    printf "'dots %s .' is disabled.\n" "$1"
+    return
+  fi
+
+  command git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME "$@"
+}
+
 # Open Drupal project webpage.
 function dp() {
   if [[ "$OSTYPE" =~ darwin* ]]; then
@@ -69,7 +85,7 @@ function rml() {
 # Collapsed FISH-style working directory.
 #
 # @see: https://github.com/robbyrussell/oh-my-zsh/blob/c3b072eace1ce19a48e36c2ead5932ae2d2e06d9/themes/fishy.zsh-theme#L3-L10
-_fishy_collapsed_wd() {
+function _fishy_collapsed_wd() {
   pwd | perl -pe '
     BEGIN {
       binmode STDIN,  ":encoding(UTF-8)";
