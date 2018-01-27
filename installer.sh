@@ -23,6 +23,7 @@ function install() {
     REPO_PREFIX='https://github.com/'
   fi
   git clone \
+    --recursive \
     --separate-git-dir="$HOME/$DOTS_DIR" \
     "$REPO_PREFIX"nhoag/dotfiles.git \
     "$(mktemp -d)"
