@@ -1,3 +1,6 @@
 [submodule ".tmux/themes/tmux-themepack"]
 	path = .tmux/themes/tmux-themepack
 	url = git@github.com:jimeh/tmux-themepack.git
+[submodule "src/hosts"]
+	path = src/hosts
+	url = git@github.com:StevenBlack/hosts.git
