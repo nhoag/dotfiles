@@ -31,7 +31,7 @@ function dots() {
     return
   fi
 
-  command git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME "$@"
+  command git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
 }
 
 # Open Drupal project webpage.
