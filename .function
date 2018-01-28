@@ -10,7 +10,7 @@ function dots() {
   # Disable 'dots [add|stage] .' so it's harder to make mistakes.
   #
   # @see: https://stackoverflow.com/a/25886149
-  if [[ ( "$1" == "add" || "$1" == "stage" ) && "$2" == "." ]]; then
+  if [[ ("$1" == "add" || "$1" == "stage") && "$2" == "." ]]; then
     printf "'dots %s .' is disabled.\n" "$1"
     return
   fi

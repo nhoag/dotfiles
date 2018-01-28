@@ -67,14 +67,14 @@ function main() {
     key="$1"
 
     case $key in
-      -f|--force)
-        FORCE=true
-        shift
-        ;;
-      *)
-        POSITIONAL+=("$1")
-        shift
-        ;;
+    -f | --force)
+      FORCE=true
+      shift
+      ;;
+    *)
+      POSITIONAL+=("$1")
+      shift
+      ;;
     esac
   done
   set -- "${POSITIONAL[@]}"
