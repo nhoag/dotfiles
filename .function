@@ -1,49 +1,21 @@
 # shellcheck disable=SC1117
 
-# Homebrew update, upgrade, cleanup, doctor.
-if [[ "$OSTYPE" =~ darwin* ]]; then
-  function bs() {
-    # shellcheck disable=SC2155
-    local LOGFILE="/tmp/brewlog-$(/bin/date -j '+%Y%m%d')"
-    local YELLOW="\033[1;33m"
-    local NC="\033[0m"
-
-    echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
-    for command in update tap upgrade cleanup doctor; do
-      # shellcheck disable=SC2028
-      echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
-      brew "$command" 2>&1 |
-        tee -a "$LOGFILE"
-    done
-  }
-fi
-
 # Git wrapper for dotfiles.
 #
 # Use 'dots' as invocation for 'git' in the context of dotfiles in the home
 # directory.
 #
 # @see: https://news.ycombinator.com/item?id=11070797
-# @see: https://stackoverflow.com/a/25886149
 function dots() {
+  # Disable 'dots [add|stage] .' so it's harder to make mistakes.
+  #
+  # @see: https://stackoverflow.com/a/25886149
   if [[ ( "$1" == "add" || "$1" == "stage" ) && "$2" == "." ]]; then
     printf "'dots %s .' is disabled.\n" "$1"
     return
   fi
 
   command git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
-}
-
-# Open Drupal project webpage.
-function dp() {
-  if [[ "$OSTYPE" =~ darwin* ]]; then
-    local opencmd=open
-  elif command -v xdg-open; then
-    local opencmd=xdg-open
-  else
-    local opencmd=echo
-  fi
-  "$opencmd" "https://www.drupal.org/project/${1}"
 }
 
 # HTTP Status info.
@@ -68,18 +40,6 @@ function rand() {
     head -c "$LENGTH" |
     tr '[:upper:]' '[:lower:]'
   echo
-}
-
-# Remove line number from file.
-function rml() {
-  local FILE=${2:-"${HOME}/.ssh/known_hosts"}
-  local LINE=$1
-  if [[ "$OSTYPE" =~ darwin* ]]; then
-    local sedcmd=gsed
-  else
-    local sedcmd=sed
-  fi
-  "$sedcmd" -i -e "${LINE}d" "${FILE}"
 }
 
 # Collapsed FISH-style working directory.

@@ -10,16 +10,20 @@ script:
   shellcheck \
     --exclude=SC2148 \
     .alias \
+    .darwin \
     .export \
     .function \
+    .linux \
     .path \
     .profile \
     installer.sh
 - |
   shfmt -i 2 -l \
     .alias \
+    .darwin \
     .export \
     .function \
+    .linux \
     .path \
     .profile \
     installer.sh

@@ -27,31 +27,8 @@ alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias nvi="nvim"
 
-# Allow adding cronjobs in macOS with Vim.
-#
-# @see: https://superuser.com/a/750528
-if [[ "$OSTYPE" =~ darwin* ]]; then
-  alias crontab="export VIM_CRONTAB=true; /usr/bin/crontab"
-fi
-
 # Pass aliases to root account.
 alias sudo='sudo '
-
-if [[ "$OSTYPE" =~ darwin* ]]; then
-  alias ls='gls --color=tty --group-directories-first'
-else
-  alias ls='ls --color=tty --group-directories-first'
-fi
-
-# Erase the clipboard on macOS.
-if [[ "$OSTYPE" =~ darwin* ]]; then
-  alias pbd="pbcopy </dev/null"
-fi
-
-# Quick computer lock command on macOS.
-if [[ "$OSTYPE" =~ darwin* ]]; then
-  alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
-fi
 
 # Set phpcs default options for Drupal.
 phpcs_exts='php,module,inc,install,test,profile,theme,js,css,info,txt,md'

@@ -135,6 +135,16 @@ for file in ~/.{ah_profile,alias,work,function,export,path,private,zstyle}; do
   [[ -r "$file" ]] && [[ -f "$file" ]] && . "$file"
 done
 
+case "$OSTYPE" in
+  darwin*)
+    OSFILE="$HOME/.darwin"
+    ;;
+  *)
+    OSFILE="$HOME/.linux"
+    ;;
+esac
+[[ -r "$OSFILE" ]] && [[ -f "$OSFILE" ]] && . "$OSFILE"
+
 [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 # Added by Travis gem.
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"

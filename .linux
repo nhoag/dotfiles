@@ -1,0 +1,18 @@
+alias ls='ls --color=tty --group-directories-first'
+
+# Get Drupal project webpage.
+function dp() {
+  if command -v xdg-open; then
+    local opencmd=xdg-open
+  else
+    local opencmd=echo
+  fi
+  "$opencmd" "https://www.drupal.org/project/${1}"
+}
+
+# Remove line number from file.
+function rml() {
+  local FILE=${2:-"${HOME}/.ssh/known_hosts"}
+  local LINE=$1
+  sed -i -e "${LINE}d" "${FILE}"
+}

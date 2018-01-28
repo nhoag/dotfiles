@@ -1,0 +1,45 @@
+# Allow adding cronjobs with Vim.
+#
+# @see: https://superuser.com/a/750528
+alias crontab="export VIM_CRONTAB=true; /usr/bin/crontab"
+
+alias ls='gls --color=tty --group-directories-first'
+
+# Erase the clipboard.
+alias pbd="pbcopy </dev/null"
+
+# Quick computer lock command.
+alias afk="open -a /System/Library/Frameworks/ScreenSaver.framework/ Versions/A/Resources/ScreenSaverEngine.app"
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Set `open` tool as default `BROWSER` on macOS.
+export BROWSER='open'
+
+# Homebrew update, upgrade, cleanup, doctor.
+function bs() {
+  # shellcheck disable=SC2155
+  local LOGFILE="/tmp/brewlog-$(/bin/date -j '+%Y%m%d')"
+  local YELLOW="\033[1;33m"
+  local NC="\033[0m"
+
+  echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
+  for command in update tap upgrade cleanup doctor; do
+    # shellcheck disable=SC2028
+    echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
+    brew "$command" 2>&1 |
+      tee -a "$LOGFILE"
+  done
+}
+
+# Open Drupal project webpage.
+function dp() {
+  open "https://www.drupal.org/project/${1}"
+}
+
+# Remove line number from file.
+function rml() {
+  local FILE=${2:-"${HOME}/.ssh/known_hosts"}
+  local LINE=$1
+  gsed -i -e "${LINE}d" "${FILE}"
+}
