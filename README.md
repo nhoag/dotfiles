@@ -26,14 +26,6 @@ chmod +x ./installer.sh
 
 Install [Homebrew](https://brew.sh/) and install packages via [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) with `brew bundle`.
 
-### tmux
-
-The tmux theme installation is not automated yet:
-
-```bash
-git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
-```
-
 ## Update
 
 ```bash
