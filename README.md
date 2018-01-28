@@ -13,7 +13,7 @@ My personal dotfiles!
 
 ## Install
 
-**WARNING:** The installer script will destroy contents in the home directory. It's recommended to back up valuable home directory contents before proceeding.
+By default, the installer script will not overwrite contents in the home directory. If you're sure this is what you want, run the installer with `--force`.
 
 ```bash
 curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/master/installer.sh
