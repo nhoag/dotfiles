@@ -16,29 +16,44 @@ function install() {
 
   cd
 
-  # Clone to a throw-away location.
-  if [[ -z "$CI" ]]; then
-    REPO_PREFIX='git@github.com:'
+  if [[ -d "$HOME/$DOTS_DIR" ]]; then
+    echo 'Already installed.'
   else
-    REPO_PREFIX='https://github.com/'
+    # Use https for CI.
+    if [[ -z "$CI" ]]; then
+      REPO_PREFIX='git@github.com:'
+    else
+      REPO_PREFIX='https://github.com/'
+    fi
+
+    # Clone to a throw-away location.
+    git clone \
+      --recursive \
+      --separate-git-dir="$HOME/$DOTS_DIR" \
+      "$REPO_PREFIX"nhoag/dotfiles.git \
+      "$(mktemp -d)"
   fi
-  git clone \
-    --recursive \
-    --separate-git-dir="$HOME/$DOTS_DIR" \
-    "$REPO_PREFIX"nhoag/dotfiles.git \
-    "$(mktemp -d)"
 
   dots config status.showUntrackedFiles no
-  dots checkout .
 
-  if [[ -z "$CI" ]]; then
+  # Require 'force' to overwrite the home directory.
+  if [[ "$FORCE" == true ]]; then
+    dots checkout .
+  else
+    echo 'Dotfiles installed but not checked out.'
+    echo 'Review pending changes with:'
+    # shellcheck disable=SC2016
+    echo '  git --git-dir="$HOME/'"$DOTS_DIR"'" --work-tree="$HOME" diff'
+  fi
+
+  [[ -z "$CI" ]] && {
     # Switch the default shell to zsh (requires sudo) - no effect until login.
     # Disable for CI.
     chsh -s "$(which zsh)"
 
     # Use zsh right now (and trigger zgen build).
     zsh
-  fi
+  }
 
   cd -
 
@@ -47,12 +62,24 @@ function install() {
 # Main installer function.
 function main() {
 
-  local DOTS_DIR=${1:-'.dotfiles'}
+  POSITIONAL=()
+  while [[ $# -gt 0 ]]; do
+    key="$1"
 
-  [[ -d "$HOME/$DOTS_DIR" ]] && {
-    echo 'Already installed.'
-    return
-  }
+    case $key in
+      -f|--force)
+        FORCE=true
+        shift
+        ;;
+      *)
+        POSITIONAL+=("$1")
+        shift
+        ;;
+    esac
+  done
+  set -- "${POSITIONAL[@]}"
+
+  local DOTS_DIR=${1:-'.dotfiles'}
 
   requirements \
     curl \
