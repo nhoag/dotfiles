@@ -1,8 +1,8 @@
+language: shell
+
 os:
 - linux
 - osx
-
-language: shell
 
 addons:
   apt:
