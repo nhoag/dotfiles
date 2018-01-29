@@ -9,6 +9,10 @@ addons:
     packages:
     - zsh
 
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update                       ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install bats shellcheck shfmt; fi
+
 script:
 - |
   shellcheck \
