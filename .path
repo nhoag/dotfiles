@@ -6,6 +6,7 @@ export GOPATH=$HOME/go
 path=(
   ./bin
   ./node_modules/.bin
+  ./vendor/bin
   "$HOME"/.cabal/bin
   /usr/local/heroku/bin
   "$HOME"/.rbenv/shims
