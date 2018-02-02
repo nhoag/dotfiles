@@ -1,5 +1,23 @@
 # shellcheck disable=SC1117
 
+# BLT
+#
+# @see: https://github.com/acquia/blt
+function blt() {
+  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+    GIT_ROOT=$(git rev-parse --show-cdup)
+  else
+    GIT_ROOT="."
+  fi
+
+  if [ -f "$GIT_ROOT/vendor/bin/blt" ]; then
+    $GIT_ROOT/vendor/bin/blt "$@"
+  else
+    echo "You must run this command from within a BLT-generated project repository."
+    return 1
+  fi
+}
+
 # Git wrapper for dotfiles.
 #
 # Use 'dots' as invocation for 'git' in the context of dotfiles in the home
