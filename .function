@@ -38,8 +38,7 @@ function dots() {
 
 # HTTP Status info.
 function hs() {
-  curl -sk "https://httpstat.us/${1}"
-  echo
+  grep -E "^${1}" "$HOME/src/http.status.txt"
 }
 
 # Make directory and change directory.
