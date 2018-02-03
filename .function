@@ -38,7 +38,9 @@ function dots() {
 
 # HTTP Status info.
 function hs() {
-  grep -E "^${1}" "$HOME/src/http.status.txt"
+  local HSDIR=
+  [[ -z "$TRAVIS_BUILD_DIR" ]] && HSDIR="$HOME" || HSDIR='.'
+  grep -E "^${1}" "$HSDIR/src/http.status.txt"
 }
 
 # Make directory and change directory.
