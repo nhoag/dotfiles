@@ -8,11 +8,15 @@ source "${BATS_TEST_DIRNAME}/../.function"
 
 @test "hs 200 status" {
   run hs 200
+  echo "$status"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "hs 301 result" {
   run hs 301
+  echo "$status"
+  echo "$output"
   [ "$output" = "301 Moved Permanently" ]
 }
 
