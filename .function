@@ -4,7 +4,7 @@
 #
 # @see: https://github.com/acquia/blt
 function blt() {
-  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+  if [ "$(git rev-parse --show-cdup 2> /dev/null)" != "" ]; then
     GIT_ROOT=$(git rev-parse --show-cdup)
   else
     GIT_ROOT="."
