@@ -18,6 +18,26 @@ function blt() {
   fi
 }
 
+# Remove Docker containers and images.
+#
+# Inspired by @webbj74's `nuke-docker`.
+function docker-clean() {
+  local DOCKER_CONTAINERS=
+  local DOCKER_IMAGES=
+
+  DOCKER_CONTAINERS=$(docker ps -a -q)
+  if [[ ! -z "${DOCKER_CONTAINERS}" ]]; then
+    echo "Remove Docker containers"
+    docker rm -f "${DOCKER_CONTAINERS}"
+  fi
+
+  DOCKER_IMAGES=$(docker images -q)
+  if [[ ! -z "${DOCKER_IMAGES}" ]]; then
+    echo "Remove Docker images"
+    docker rmi "${DOCKER_IMAGES}"
+  fi
+}
+
 # Git wrapper for dotfiles.
 #
 # Use 'dots' as invocation for 'git' in the context of dotfiles in the home
