@@ -4,4 +4,5 @@ new-window -n entapps
 send-keys -t entapps "entapps" Enter
 new-window -n zendesk -c ~/dev/acquia/entapps/zendesk/zendesk-apps
 split-window -h -d -c ~/dev/acquia/entapps/zendesk/zendesk-apps
+new-window -n scratch
 
