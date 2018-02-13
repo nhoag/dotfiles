@@ -1,5 +1,5 @@
 new-window -n blog -c ~/dev/nhoag/blog
-send-keys -t blog.1 "vi ." Enter
+send-keys -t blog.1 "hugo new blog/$(date +%Y)/blog-post.md"
 split-window -h -d -c ~/dev/nhoag/blog
 send-keys -t blog.2 "hugo serve -D -b localhost:1313" Enter
 
