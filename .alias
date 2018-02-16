@@ -21,6 +21,9 @@ alias branch='git branch'
 alias rebase='git rebase'
 alias amend='git commit -C HEAD --amend'
 
+# tmux aliases.
+alias tmux="TERM=screen-256color-bce tmux"
+
 # Vim aliases.
 alias vi="vim"
 alias zshrc="vim ~/.zshrc"
