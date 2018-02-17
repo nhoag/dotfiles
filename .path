@@ -7,10 +7,7 @@ path=(
   ./bin
   ./node_modules/.bin
   ./vendor/bin
-  "$HOME"/.cabal/bin
-  /usr/local/heroku/bin
-  "$HOME"/.rbenv/shims
-  "$HOME"/.rbenv/bin
+  "$HOME"/.rbenv/{bin,shims}
   "$HOME"/.bin
   "$HOME"/bin
   "$HOME"/.composer/vendor/bin
