@@ -4,3 +4,6 @@
 [submodule "src/hosts"]
 	path = src/hosts
 	url = https://github.com/StevenBlack/hosts.git
+[submodule "bin"]
+	path = bin
+	url = git@github.com:nhoag/bindir.git
