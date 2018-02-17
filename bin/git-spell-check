@@ -1,0 +1,205 @@
+#!/usr/bin/env bash
+
+# Copyright (c) 2012 Martin Prpič
+# @see: https://github.com/mprpic/git-spell-check
+# Modifications Copyright (c) 2018 Nathaniel Hoag
+# 2018-02-16: Convert to Git subcommand:
+# * Implement shellcheck recommendations
+# * Wrap comments at 80 characters
+# * Wrap commands for readability
+# * Use git diff --co-color
+# * Add support for git diff options and arguments
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+# The following is a text file that represents your custom dictionary; edit as
+# necessary. Add words to it that you wish to ignore for the spell check.
+dict=~/.git-spell-check
+if [[ ! -f "$dict" ]]; then
+    touch "$dict"
+    printf "%s\n" "Custom dictionary not found. Created ${dict}..."
+fi
+
+# The following is a temporary dictionary (a binary file) created from the dict
+# text file. It is deleted after the script finishes.
+temp_dict=$(mktemp docs-dictionary-XXXXXX)
+
+# Language of your doc. When using a non-English language, make sure you have
+# the appropriate aspell libraries installed: "yum search aspell" or "brew
+# options aspell". For example, to spell check in Slovak, you must have the
+# aspell-sk package installed.
+lang=en
+
+# Define an extension for any additional dictionaries (containing words that
+# are ignored during the spell check) that are kept locally in your repository.
+# These dictionaries will be loaded on top of the existing global dictionary (by
+# default ~/.git-spell-check).
+extension=pws
+
+# Clean up if script is interrupted or terminated.
+trap "cleanup" SIGINT SIGTERM
+
+# Prepares the dictionary from scratch in case new words were added since last
+# time.
+function prepare_dictionary() {
+
+    local_dict=$(find . -name *.$extension -exec ls {} \;)
+    if [[ -z "$local_dict" ]]; then
+        sort -u "$temp_dict" -o "$temp_dict"
+        aspell --lang="$lang" create master "$temp_dict" < "$dict"
+    else
+        temp_file=$(mktemp temp_file-XXXXXX)
+        for file in $local_dict; do
+            cat "$file" >> "$temp_file"
+        done
+        cat $dict >> "$temp_file"
+        sort -u "$temp_file" -o "$temp_file"
+        aspell --lang="$lang" create master "$temp_dict" < "$temp_file"
+        /bin/rm -f "$temp_file"
+    fi
+
+}
+
+# Removes the temporary dictionary.
+function cleanup() {
+
+    /bin/rm -f "$temp_dict"
+
+}
+
+# Spell checks added/updated content for any diff. Writes out words that are
+# misspelled or exits with 0.
+function spell_check() {
+
+    words=$(git diff --no-color "$@" |
+        grep -e "^+[^+]" |
+        aspell \
+            --mode=sgml list \
+            --add-sgml-skip={ulink,code,literal,firstname,parameter,option,package,replaceable,programlisting,userinput,screen,filename,command,computeroutput,abbrev,accel,orgname,surname,foreignphrase,acronym,hardware,keycap,systemitem,application} \
+            --lang="$lang" \
+            --extra-dicts="$temp_dict" |
+        sort -u)
+    if [[ ! "$words" ]]; then
+        printf "%s\n" "No typos found."
+        cleanup; exit 0
+    fi
+    printf "%s\n" "Spell check failed on the following words:
+-------------------------------------------------"
+    echo "$words"
+    for word in $words; do
+        grep \
+            --color=always \
+            --exclude-dir={.git,tmp} \
+            -HIrone "\<$word\>" \
+            $(git diff "$@" \
+                --name-only \
+                --diff-filter=ACMRTUXB) |
+            awk -F ":" '{print "File: " $1 "\ton line: " $2 "\tTypo: " $3}'
+        printf "%s\n" "-------------------"
+    done
+
+}
+
+# Adds all, some, or none of the misspelled words to the custom dictionary.
+function add_words_to_dict() {
+
+    printf "%s\n" "
+Add any of the misspelled words into your custom dictionary?:
+  * a[ll]     (add all words into dict)
+  * s[ome]    (add some words into dict, fix others)
+  * i[gnore]  (add some words into dict, ignore others)
+  * n[one]    (exit)
+"
+
+    while true; do
+        exec < /dev/tty # In case of detached STDIN (e.g. Git hooks).
+        read -r answer
+        shopt -s nocasematch
+        case "$answer" in
+            a|all)
+                add_all
+                cleanup; exit 0
+                ;;
+            s|some)
+                add_some
+                printf "%s\n" "Please fix remaining typos."
+                cleanup; exit 1
+                ;;
+            i|ignore)
+                add_some
+                cleanup; exit 0
+                ;;
+            n|none)
+                add_none
+                cleanup; exit 1
+                ;;
+            *)
+                printf "%s\n" "Incorrect answer. Try again."
+                continue
+        esac
+        shopt -u nocasematch
+    done
+
+}
+
+# Adds all words to the custom dictionary and continues with the commit.
+function add_all() {
+
+    for word in $words; do
+        echo "$word" >> "$dict"
+    done
+
+}
+
+# Adds some (selectd by user) of the words to the dictinary and exits with 1.
+function add_some() {
+
+    for word in $words; do
+        printf "%s\n" "Do you want to add the following word to your custom dictionary: $word  (y[es] or n[o])"
+        while true; do
+            exec < /dev/tty
+            read -r answer
+            shopt -s nocasematch
+            case "$answer" in
+                y|yes)
+                    echo "$word" >> "$dict"
+                    printf "%s\n" "\"$word\" added to your custom dictionary."
+                    break ;;
+                n|no)
+                    break ;;
+                *)
+                    printf "%s\n" "Incorrect answer. Try again."
+                    continue
+            esac
+            shopt -u nocasematch
+        done
+    done
+
+}
+
+# Adds none of the words and exits with 1.
+function add_none() {
+
+    printf "%s\n" "No words were added to your custom dictionary."
+    printf "%s\n" "Please fix remaining typos."
+
+}
+
+
+prepare_dictionary
+spell_check "$@"
+add_words_to_dict
+
