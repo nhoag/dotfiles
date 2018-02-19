@@ -4,6 +4,7 @@
 [submodule "src/hosts"]
 	path = src/hosts
 	url = https://github.com/StevenBlack/hosts.git
+	ignore = dirty
 [submodule "bin"]
 	path = bin
 	url = https://github.com/nhoag/bindir.git
