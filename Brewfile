@@ -1,10 +1,12 @@
 # Casks
 cask "gdal-framework"
 cask "gimp"
+cask "iterm2"
 cask "minikube"
 cask "muzzle"
 cask "vagrant"
 cask "vagrant-manager"
+cask "virtualbox"
 cask "xquartz"
 
 # Taps
@@ -26,6 +28,7 @@ tap "thoughtbot/formulae"
 brew "ack"
 brew "apr"
 brew "apr-util"
+brew "aspell"
 brew "autoconf"
 brew "automake"
 brew "awscli"
