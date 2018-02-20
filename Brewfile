@@ -16,7 +16,6 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/php"
 tap "homebrew/services"
-tap "neovim/neovim"
 tap "thoughtbot/formulae"
 
 # Brews
