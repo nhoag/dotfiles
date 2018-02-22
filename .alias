@@ -20,6 +20,7 @@ alias merge='git merge -s recursive -X patience'
 alias branch='git branch'
 alias rebase='git rebase'
 alias amend='git commit -C HEAD --amend'
+alias remotes='git remotes'
 
 # tmux aliases.
 alias tmux="TERM=screen-256color-bce tmux"
