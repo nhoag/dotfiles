@@ -22,20 +22,11 @@ function blt() {
 #
 # Inspired by @webbj74's `nuke-docker`.
 function docker-clean() {
-  local DOCKER_CONTAINERS=
-  local DOCKER_IMAGES=
+  echo "Remove Docker containers"
+  docker rm -f $(docker ps -a -q)
 
-  DOCKER_CONTAINERS=$(docker ps -a -q)
-  if [[ ! -z "${DOCKER_CONTAINERS}" ]]; then
-    echo "Remove Docker containers"
-    docker rm -f "${DOCKER_CONTAINERS}"
-  fi
-
-  DOCKER_IMAGES=$(docker images -q)
-  if [[ ! -z "${DOCKER_IMAGES}" ]]; then
-    echo "Remove Docker images"
-    docker rmi "${DOCKER_IMAGES}"
-  fi
+  echo "Remove Docker images"
+  docker rmi $(docker images -q)
 }
 
 # Git wrapper for dotfiles.
