@@ -17,7 +17,7 @@ function install() {
   cd
 
   if [[ -d "$HOME/$DOTS_DIR" ]]; then
-    echo 'Already installed.'
+    echo "${HOME}/${DOTS_DIR} already exists."
   else
     # Use https for CI.
     if [[ -z "$CI" ]]; then
@@ -26,7 +26,8 @@ function install() {
       REPO_PREFIX='https://github.com/'
     fi
 
-    # Clone to a throw-away location.
+    # Clone to a throw-away location as Git requires a destination and the
+    # destination can't exist (/dev/null doesn't work).
     git clone \
       --recursive \
       --separate-git-dir="$HOME/$DOTS_DIR" \
