@@ -17,7 +17,8 @@ By default, the installer script will not overwrite contents in the home directo
 
 ```bash
 curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/master/installer.sh
-# Visually inspect the file, then:
+echo "47f50d25850121335291a88782d532c665f28348d986fa1592b6f89b314b6b42  installer.sh" |
+  shasum -c
 chmod +x ./installer.sh
 ./installer.sh
 ```
