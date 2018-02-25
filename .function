@@ -24,11 +24,14 @@ function blt() {
 function docker-clean() {
   echo "Remove Docker containers"
   # shellcheck disable=SC2046
-  docker rm -f $(docker ps -a -q)
+  docker rm -f -v $(docker ps -a -q)
 
   echo "Remove Docker images"
   # shellcheck disable=SC2046
   docker rmi $(docker images -q)
+
+  # Clean up dangling images, containers, volumes, and networks.
+  docker system prune -a -f
 }
 
 # Git wrapper for dotfiles.
