@@ -4,3 +4,4 @@ if [[ -n "$ZSH_VERSION" ]]; then
     . "$HOME/.zshrc"
   fi
 fi
+
