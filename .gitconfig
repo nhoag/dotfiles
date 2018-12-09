@@ -5,7 +5,6 @@
 	cp = cherry-pick
 	ct = commit
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	ph = push-with-hooks
 
 	# Switch to a branch, creating it if necessary
 	go = !"f() { \
@@ -15,7 +14,7 @@
 
 	# Checkout a pull request from origin (of a github repository)
 	pr = !"f() { \
-			git fetch ${2:-github} pull/$1/head:pr-$1 \
+			git fetch ${2:-origin} pull/$1/head:pr-$1 \
 				&& git checkout pr-$1; \
 		}; f"
 
@@ -94,6 +93,9 @@
 [push]
 	default = nothing
 
+[rebase]
+	autoStash = true
+
 [rerere]
 	enabled = true
 
@@ -109,3 +111,5 @@
 [include]
 	path = ~/.gitprivate
 
+[branch]
+	autoSetupRebase = always
