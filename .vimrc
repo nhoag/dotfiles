@@ -17,9 +17,7 @@ call plug#begin()
   Plug 'easymotion/vim-easymotion'
   Plug 'ervandew/supertab'
   Plug 'godlygeek/tabular'
-  Plug 'ludovicchabant/vim-gutentags'
   Plug 'mileszs/ack.vim'
-  Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree'
   Plug 'sgur/vim-editorconfig'
   Plug 'tpope/vim-fugitive'
@@ -150,17 +148,6 @@ nmap <Leader>n :NERDTreeToggle<CR>
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 
-" ==== gutentags settings ====
-" Exclude css, html, js files from generating tag files.
-let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
-                            \ '*.phar', '*.ini', '*.rst', '*.md',
-                            \ '*vendor/*/test*', '*vendor/*/Test*',
-                            \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
-                            \ '*var/cache*', '*var/log*']
-" Where to store tag files.
-let g:gutentags_cache_dir = '~/.vim/gutentags'
-" ==== End gutentags settings ====
-
 " Allow adding cronjobs in macOS with Vim.
 "
 " @see: https://superuser.com/a/750528
@@ -168,4 +155,23 @@ if $VIM_CRONTAB == "true"
   set nobackup
   set nowritebackup
 endif
+
+" BEGIN EasyMotion configuration.
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+" nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" END EasyMotion configuration.
 
