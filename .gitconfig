@@ -72,7 +72,7 @@
 	prompt = false
 
 [gpg]
-	program = /usr/local/bin/gpg
+	program = gpg
 
 [hub]
 	protocol = https

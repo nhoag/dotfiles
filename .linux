@@ -21,3 +21,5 @@ path=(
   /usr/share/doc/git/contrib/diff-highlight
   $path
 )
+
+export GPG_TTY=$(tty)
