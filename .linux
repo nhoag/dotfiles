@@ -16,3 +16,8 @@ function rml() {
   local LINE=$1
   sed -i -e "${LINE}d" "${FILE}"
 }
+
+path=(
+  /usr/share/doc/git/contrib/diff-highlight
+  $path
+)

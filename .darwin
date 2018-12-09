@@ -45,3 +45,9 @@ function rml() {
   local LINE=$1
   gsed -i -e "${LINE}d" "${FILE}"
 }
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+  /usr/local/opt/git/share/git-core/contrib/diff-highlight
+  $path
+)
