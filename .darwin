@@ -1,3 +1,4 @@
+# shellcheck disable=SC2206
 # Allow adding cronjobs with Vim.
 #
 # @see: https://superuser.com/a/750528
@@ -49,6 +50,5 @@ function rml() {
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/opt/git/share/git-core/contrib/diff-highlight
-  # shellcheck disable=SC2206
   $path
 )

@@ -1,3 +1,4 @@
+# shellcheck disable=SC2206
 alias ls='ls --color=tty --group-directories-first'
 
 # Get Drupal project webpage.
@@ -19,7 +20,6 @@ function rml() {
 
 path=(
   /usr/share/doc/git/contrib/diff-highlight
-  # shellcheck disable=SC2206
   $path
 )
 
