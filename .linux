@@ -19,6 +19,7 @@ function rml() {
 
 path=(
   /usr/share/doc/git/contrib/diff-highlight
+  # shellcheck disable=SC2206
   $path
 )
 

@@ -50,7 +50,7 @@ function install() {
   [[ -z "$CI" ]] && {
     # Switch the default shell to zsh (requires sudo) - no effect until login.
     # Disable for CI.
-    chsh -s "$(which zsh)"
+    chsh -s "$(command -v zsh)"
 
     # Use zsh right now (and trigger zgen build).
     zsh
