@@ -31,7 +31,7 @@ function docker-clean() {
   docker rmi $(docker images -q)
 
   # Clean up dangling images, containers, volumes, and networks.
-  docker system prune -a -f
+  docker system prune -a -f --volumes
 }
 
 # Git wrapper for dotfiles.
