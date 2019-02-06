@@ -27,7 +27,7 @@ function bs() {
   local NC="\033[0m"
 
   echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
-  for command in tap update upgrade "cask upgrade" cleanup prune doctor; do
+  for command in tap upgrade "cask upgrade" "cleanup --verbose" doctor; do
     # shellcheck disable=SC1117,SC2028
     echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
     eval "brew ${command}" 2>&1 |
