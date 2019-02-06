@@ -2,7 +2,10 @@ new-window -n code-review
 send-keys -t code-review "code-review --recent='-1 week' --pending --min-approvals --ansi | less" Enter
 new-window -n src
 send-keys -t src "cd ~/src" Enter
+new-window -n data
+send-keys -t data "cd ~/data" Enter
 new-window -n scratch
+previous-window
 previous-window
 previous-window
 
