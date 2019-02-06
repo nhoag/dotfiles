@@ -40,6 +40,7 @@
 416 Range Not Satisfiable (RFC 7233)
 417 Expectation Failed
 418 I'm a teapot (RFC 2324)
+419 Authentication Timeout (not in RFC 2616)
 421 Misdirected Request (RFC 7540)
 422 Unprocessable Entity (WebDAV; RFC 4918)
 423 Locked (WebDAV; RFC 4918)
