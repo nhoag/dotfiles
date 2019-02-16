@@ -149,3 +149,5 @@ esac
 # Added by Travis gem.
 [[ -f "${HOME}/.travis/travis.sh" ]] && . "${HOME}/.travis/travis.sh"
 
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
