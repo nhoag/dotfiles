@@ -20,6 +20,7 @@ call plug#begin()
   Plug 'mileszs/ack.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'sgur/vim-editorconfig'
+  Plug 'takac/vim-hardtime'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
   Plug 'wikitopian/hardmode'
@@ -98,16 +99,6 @@ function! CloseWindowOrKillBuffer()
   endif
 endfunction
 
-" Stop using arrow keys!
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
 inoremap <C-s> <ESC>:w<CR>
 inoremap <C-U> <C-G>u<C-U>
 nmap j gj
@@ -175,3 +166,6 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 " END EasyMotion configuration.
 
+" BEGIN Hardtime config
+let g:hardtime_default_on = 1
+" END Hardtime config
