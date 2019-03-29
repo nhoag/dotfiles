@@ -18700,9 +18700,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-01-25T07:34:58Z</date>
+	<date>2019-03-08T13:35:32Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUSkippedVersion</key>
+	<string>3.2.7beta4</string>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>Show Toolbelt</key>
