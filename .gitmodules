@@ -8,3 +8,6 @@
 [submodule "bin"]
 	path = bin
 	url = https://github.com/nhoag/bindir.git
+[submodule ".emacs.d/src/sensible-defaults.el"]
+	path = .emacs.d/src/sensible-defaults.el
+	url = git@github.com:hrs/sensible-defaults.el.git
