@@ -23,7 +23,6 @@ call plug#begin()
   Plug 'takac/vim-hardtime'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
-  Plug 'wikitopian/hardmode'
   Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
