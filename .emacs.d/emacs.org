@@ -1,0 +1,380 @@
+#+TITLE: Emacs Configuration
+#+OPTIONS: toc:nil num:nil
+
+* Org
+
+Use a newer version of org-mode. Remove org directories from the load path to ensure the new version takes priority.
+
+#+BEGIN_SRC emacs-lisp
+(use-package org
+  :ensure org-plus-contrib
+  :pin org
+  :defer t)
+
+(require 'cl)
+(setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
+
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+    )
+)
+
+(add-hook 'org-src-mode-hook
+  (lambda ()
+    (set-fill-column 100)
+    (visual-fill-column-mode -1)))
+#+END_SRC
+
+* Org Export Formats
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-confluence)
+#+END_SRC
+
+* Theme
+
+#+BEGIN_SRC emacs-lisp
+(use-package spacemacs-theme
+  :ensure t
+  :defer t)
+
+(load-theme 'spacemacs-dark t)
+#+END_SRC
+
+* MacOS Titlebar Display
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+(setq ns-use-proxy-icon  nil)
+(setq frame-title-format nil)
+#+END_SRC
+
+* Minimal UI
+
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+(tool-bar-mode   -1)
+(tooltip-mode    -1)
+(menu-bar-mode   -1)
+#+END_SRC
+
+* Startup with Full Screen
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+#+END_SRC
+
+* =use-package=
+
+#+BEGIN_SRC emacs-lisp
+(setq use-package-always-ensure t)
+#+END_SRC
+
+* =auto-compile=
+
+#+BEGIN_SRC emacs-lisp
+(use-package auto-compile
+  :config (auto-compile-on-load-mode))
+
+(setq load-prefer-newer t)
+#+END_SRC
+
+* =sensible-defaults.el=
+
+#+BEGIN_SRC emacs-lisp
+(load-file "~/.emacs.d/src/sensible-defaults.el/sensible-defaults.el")
+(sensible-defaults/use-all-settings)
+(sensible-defaults/use-all-keybindings)
+#+END_SRC
+
+* EVIL
+
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
+
+(use-package evil-easymotion
+  :ensure t
+  :config
+  (evilem-default-keybindings "SPC"))
+#+END_SRC
+
+* Flycheck
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+#+END_SRC
+
+* =undo-tree=
+
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree)
+(global-undo-tree-mode)
+#+END_SRC
+
+* ISpell
+
+#+BEGIN_SRC emacs-lisp
+(use-package ispell)
+#+END_SRC
+
+* Auto-Complete
+
+#+BEGIN_SRC emacs-lisp
+(use-package auto-complete :defer t
+  :diminish auto-complete-mode
+  :custom
+  (ac-ignore-case nil)
+  :config
+  (global-auto-complete-mode t))
+#+END_SRC
+
+* Markdown
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :commands gfm-mode
+  :mode ("\\.md$" . gfm-mode)
+  :config
+  (setq markdown-command "pandoc --standalone --mathjax --from=markdown"))
+#+END_SRC
+
+* Eldoc
+
+#+BEGIN_SRC emacs-lisp
+(use-package eldoc :defer t
+  :diminish eldoc-mode)
+#+END_SRC
+
+* LSP
+
+#+BEGIN_SRC emacs-lisp
+;; emacs support for the Language Server Protocol
+(use-package lsp-mode
+  :ensure t
+  :config
+  (setq lsp-response-timeout 25))
+
+(use-package lsp-ui
+  :ensure t
+  :after lsp-mode
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(defcustom nhoag/lsp-intelephense-files-associations
+  ["*.php" "*.phtml" "*.module" "*.theme" "*.inc"]
+  "Configure glob patterns to make files available for language server features."
+  :type '(repeat string))
+
+(lsp-register-custom-settings
+  '(("intelephense.files.associations" nhoag/lsp-intelephense-files-associations)))
+#+END_SRC
+
+* Web
+
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :ensure t)
+#+END_SRC
+
+* PHP
+
+#+BEGIN_SRC emacs-lisp
+(use-package php-mode
+  :ensure t
+  :config
+  (add-hook 'php-mode-hook #'lsp))
+#+END_SRC
+
+* Drupal
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(php\\|inc\\)$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
+#+END_SRC
+
+* JavaScript
+
+#+BEGIN_SRC emacs-lisp
+(use-package js2-mode
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook #'lsp))
+#+END_SRC
+
+* JSON
+
+#+BEGIN_SRC emacs-lisp
+(use-package json-mode
+  :ensure t)
+#+END_SRC
+
+* YAML
+
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :ensure t)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-hook 'yaml-mode-hook
+  '(lambda ()
+    (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+#+END_SRC
+
+* Company
+
+#+BEGIN_SRC emacs-lisp
+(use-package company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(use-package company-lsp)
+(push 'company-lsp company-backends)
+#+END_SRC
+
+* Ido
+
+#+BEGIN_SRC emacs-lisp
+(use-package ido
+  :ensure t)
+#+END_SRC
+
+* Helm
+
+#+BEGIN_SRC emacs-lisp
+(use-package helm
+  :ensure t
+  :init
+  (setq helm-mode-fuzzy-match t)
+  (setq helm-completion-in-region-fuzzy-match t)
+  (setq helm-candidate-number-list 50)
+  :config
+  (global-set-key (kbd "M-x") #'helm-M-x)
+  (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+  (global-set-key (kbd "C-x C-f") #'helm-find-files)
+  (helm-mode 1))
+#+END_SRC
+
+* Projectile
+
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :demand t
+  :init
+  (use-package helm-projectile
+    :ensure t)
+  :config
+  (projectile-global-mode))
+#+END_SRC
+
+* Magit
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t)
+#+END_SRC
+
+* Moody
+
+#+BEGIN_SRC emacs-lisp
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+#+END_SRC
+
+* Minions
+
+#+BEGIN_SRC emacs-lisp
+(use-package minions
+  :config
+  (minions-mode 1))
+#+END_SRC
+
+* Auto-save
+
+#+BEGIN_SRC emacs-lisp
+(defvar my-auto-save-folder "~/.emacs.d/auto-save/")
+(add-to-list 'auto-save-file-name-transforms
+  (list "\\(.+/\\)*\\(.*?\\)" (expand-file-name "\\2" my-auto-save-folder)) t)
+#+END_SRC
+
+* Spell-Check
+
+#+BEGIN_SRC emacs-lisp
+(use-package flyspell
+  :config
+  (add-hook 'gfm-mode-hook 'flyspell-mode)
+  (add-hook 'org-mode-hook 'flyspell-mode)
+  (add-hook 'git-commit-mode-hook 'flyspell-mode)
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
+#+END_SRC
+
+* Auto-Wrap
+
+#+BEGIN_SRC emacs-lisp
+(use-package visual-fill-column
+  :ensure t)
+(global-visual-line-mode t)
+(add-hook 'text-mode-hook
+  '(lambda()
+    (set-fill-column 80)
+    (visual-fill-column-mode)))
+
+(add-hook 'text-mode-hook 'visual-fill-column-mode)
+(add-hook 'gfm-mode-hook 'visual-fill-column-mode)
+(add-hook 'org-mode-hook 'visual-fill-column-mode)
+#+END_SRC
+
+* Highlight Diff
+
+#+BEGIN_SRC emacs-lisp
+(use-package diff-hl
+  :config
+  (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
+  (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
+#+END_SRC
+
+* Misc
+
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode nil)
+(setq-default show-trailing-whitespace t)
+(global-hl-line-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'yaml-mode-hook 'display-line-numbers-mode)
+(setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/bin"))
+(add-to-list 'exec-path "/usr/local/bin")
+(setq column-number-mode t)
+(setq ring-bell-function 'ignore)
+#+END_SRC
+
+* Proselint
+
+#+BEGIN_SRC emacs-lisp
+(require 'flycheck)
+(flycheck-define-checker proselint
+  "A linter for prose."
+  :command ("proselint" source-inplace)
+  :error-patterns
+  ((warning line-start (file-name) ":" line ":" column ": "
+    (id (one-or-more (not (any " "))))
+    (message) line-end))
+  :modes (text-mode markdown-mode gfm-mode org-mode))
+
+(add-to-list 'flycheck-checkers 'proselint)
+#+END_SRC
+
+* Origami
+
+#+BEGIN_SRC emacs-lisp
+(use-package origami
+  :ensure t)
+#+END_SRC
