@@ -28,6 +28,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Org Export Formats
 
+The Confluence exporter seems more oriented toward Jira, and isn't all that helpful for Confluence 6.x.
+
 #+BEGIN_SRC emacs-lisp
 (require 'ox-confluence)
 #+END_SRC
@@ -44,6 +46,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * MacOS Titlebar Display
 
+Make the title bar look modern.
+
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
@@ -52,6 +56,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * Minimal UI
+
+Get rid of UI clutter.
 
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
@@ -74,6 +80,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * =auto-compile=
 
+Speed up Emacs startup.
+
 #+BEGIN_SRC emacs-lisp
 (use-package auto-compile
   :config (auto-compile-on-load-mode))
@@ -83,6 +91,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * =sensible-defaults.el=
 
+[[https://github.com/hrs/sensible-defaults.el][A simple, modular collection of better Emacs default settings.]]
+
 #+BEGIN_SRC emacs-lisp
 (load-file "~/.emacs.d/src/sensible-defaults.el/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
@@ -90,6 +100,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * EVIL
+
+Quality Vim emulation in Emacs.
 
 #+BEGIN_SRC emacs-lisp
 (use-package evil
@@ -105,6 +117,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Flycheck
 
+Check /all kinds of things/ in open buffers.
+
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :ensure t
@@ -113,12 +127,16 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * =undo-tree=
 
+Powerful tree-based undo navigation.
+
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree)
 (global-undo-tree-mode)
 #+END_SRC
 
 * ISpell
+
+Spell-checking.
 
 #+BEGIN_SRC emacs-lisp
 (use-package ispell)
@@ -147,6 +165,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Eldoc
 
+Displays the signature of the called function in the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minibuffer.html#Minibuffer][Minibuffer]]. I might remove this in favor of lsp-ui.
+
 #+BEGIN_SRC emacs-lisp
 (use-package eldoc :defer t
   :diminish eldoc-mode)
@@ -154,19 +174,28 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * LSP
 
+Language Server Protocol support for Emacs.
+
 #+BEGIN_SRC emacs-lisp
-;; emacs support for the Language Server Protocol
 (use-package lsp-mode
   :ensure t
   :config
   (setq lsp-response-timeout 25))
+#+END_SRC
 
+Add support for overlay displays of LSP results.
+
+#+BEGIN_SRC emacs-lisp
 (use-package lsp-ui
   :ensure t
   :after lsp-mode
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+#+END_SRC
 
+Add Drupal extensions to intelephense configuration.
+
+#+BEGIN_SRC emacs-lisp
 (defcustom nhoag/lsp-intelephense-files-associations
   ["*.php" "*.phtml" "*.module" "*.theme" "*.inc"]
   "Configure glob patterns to make files available for language server features."
@@ -178,12 +207,16 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Web
 
+Haven't needed this yet, but keeping it around in case I need to edit HTML.
+
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :ensure t)
 #+END_SRC
 
 * PHP
+
+Hook up =php-mode= to LSP.
 
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode
@@ -194,6 +227,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Drupal
 
+Add Drupal extensions to =php-mode= and =conf-windows-mode=.
+
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.\\(php\\|inc\\)$" . php-mode))
@@ -201,6 +236,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * JavaScript
+
+In-progress JavaScript configuration. Haven't gotten LSP to work yet.
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
@@ -229,22 +266,23 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Company
 
+Modular "COMPlete ANYthing" in-buffer [[https://company-mode.github.io/][completion framework]].
+
 #+BEGIN_SRC emacs-lisp
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
+#+END_SRC
 
+Add LSP backend to =company-mode=.
+
+#+BEGIN_SRC emacs-lisp
 (use-package company-lsp)
 (push 'company-lsp company-backends)
 #+END_SRC
 
-* Ido
-
-#+BEGIN_SRC emacs-lisp
-(use-package ido
-  :ensure t)
-#+END_SRC
-
 * Helm
+
+Emacs incremental completion and selection narrowing framework.
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm
@@ -262,6 +300,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Projectile
 
+Project Interaction Library for Emacs.
+
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :demand t
@@ -274,12 +314,16 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Magit
 
+Magit is an interface to the version control system Git, implemented as an Emacs package.
+
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t)
 #+END_SRC
 
 * Moody
+
+Tabs and ribbons for the mode-line.
 
 #+BEGIN_SRC emacs-lisp
 (use-package moody
@@ -290,6 +334,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * Minions
+
+A minor-mode menu for the mode line.
 
 #+BEGIN_SRC emacs-lisp
 (use-package minions
@@ -307,6 +353,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Spell-Check
 
+Add on-the-fly spell-check support.
+
 #+BEGIN_SRC emacs-lisp
 (use-package flyspell
   :config
@@ -318,6 +366,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * Auto-Wrap
+
+Not quite how I want wrapping configured, but getting closer.
 
 #+BEGIN_SRC emacs-lisp
 (use-package visual-fill-column
@@ -334,6 +384,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * Highlight Diff
+
+Emacs package for highlighting uncommitted changes.
 
 #+BEGIN_SRC emacs-lisp
 (use-package diff-hl
@@ -358,6 +410,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 * Proselint
 
+Add prose linting to Flycheck. Depends on the [[http://proselint.com/][=proselint=]] command line tool.
+
 #+BEGIN_SRC emacs-lisp
 (require 'flycheck)
 (flycheck-define-checker proselint
@@ -373,6 +427,8 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 #+END_SRC
 
 * Origami
+
+Add support for collapsing and expanding regions of text.
 
 #+BEGIN_SRC emacs-lisp
 (use-package origami
