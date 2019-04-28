@@ -1,7 +1,7 @@
 #+TITLE: Emacs Configuration
 #+OPTIONS: toc:nil num:nil
 
-* Org
+** Org
 
 Use a newer version of org-mode. Remove org directories from the load path to ensure the new version takes priority.
 
@@ -26,7 +26,7 @@ Use a newer version of org-mode. Remove org directories from the load path to en
     (visual-fill-column-mode -1)))
 #+END_SRC
 
-* Org Export Formats
+** Org Export Formats
 
 The Confluence exporter seems more oriented toward Jira, and isn't all that helpful for Confluence 6.x.
 
@@ -34,7 +34,7 @@ The Confluence exporter seems more oriented toward Jira, and isn't all that help
 (require 'ox-confluence)
 #+END_SRC
 
-* Theme
+** Theme
 
 #+BEGIN_SRC emacs-lisp
 (use-package spacemacs-theme
@@ -44,7 +44,7 @@ The Confluence exporter seems more oriented toward Jira, and isn't all that help
 (load-theme 'spacemacs-dark t)
 #+END_SRC
 
-* MacOS Titlebar Display
+** MacOS Titlebar Display
 
 Make the title bar look modern.
 
@@ -55,7 +55,7 @@ Make the title bar look modern.
 (setq frame-title-format nil)
 #+END_SRC
 
-* Minimal UI
+** Minimal UI
 
 Get rid of UI clutter.
 
@@ -66,19 +66,19 @@ Get rid of UI clutter.
 (menu-bar-mode   -1)
 #+END_SRC
 
-* Startup with Full Screen
+** Startup with Full Screen
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+END_SRC
 
-* =use-package=
+** =use-package=
 
 #+BEGIN_SRC emacs-lisp
 (setq use-package-always-ensure t)
 #+END_SRC
 
-* =auto-compile=
+** =auto-compile=
 
 Speed up Emacs startup.
 
@@ -89,7 +89,7 @@ Speed up Emacs startup.
 (setq load-prefer-newer t)
 #+END_SRC
 
-* =sensible-defaults.el=
+** =sensible-defaults.el=
 
 [[https://github.com/hrs/sensible-defaults.el][A simple, modular collection of better Emacs default settings.]]
 
@@ -99,7 +99,7 @@ Speed up Emacs startup.
 (sensible-defaults/use-all-keybindings)
 #+END_SRC
 
-* EVIL
+** EVIL
 
 Quality Vim emulation in Emacs.
 
@@ -115,7 +115,7 @@ Quality Vim emulation in Emacs.
   (evilem-default-keybindings "SPC"))
 #+END_SRC
 
-* Flycheck
+** Flycheck
 
 Check /all kinds of things/ in open buffers.
 
@@ -125,7 +125,7 @@ Check /all kinds of things/ in open buffers.
   :init (global-flycheck-mode))
 #+END_SRC
 
-* =undo-tree=
+** =undo-tree=
 
 Powerful tree-based undo navigation.
 
@@ -134,7 +134,7 @@ Powerful tree-based undo navigation.
 (global-undo-tree-mode)
 #+END_SRC
 
-* ISpell
+** ISpell
 
 Spell-checking.
 
@@ -142,7 +142,7 @@ Spell-checking.
 (use-package ispell)
 #+END_SRC
 
-* Auto-Complete
+** Auto-Complete
 
 #+BEGIN_SRC emacs-lisp
 (use-package auto-complete :defer t
@@ -153,7 +153,7 @@ Spell-checking.
   (global-auto-complete-mode t))
 #+END_SRC
 
-* Markdown
+** Markdown
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
@@ -163,7 +163,7 @@ Spell-checking.
   (setq markdown-command "pandoc --standalone --mathjax --from=markdown"))
 #+END_SRC
 
-* Eldoc
+** Eldoc
 
 Displays the signature of the called function in the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minibuffer.html#Minibuffer][Minibuffer]]. I might remove this in favor of lsp-ui.
 
@@ -172,7 +172,7 @@ Displays the signature of the called function in the [[https://www.gnu.org/softw
   :diminish eldoc-mode)
 #+END_SRC
 
-* LSP
+** LSP
 
 Language Server Protocol support for Emacs.
 
@@ -205,7 +205,7 @@ Add Drupal extensions to intelephense configuration.
   '(("intelephense.files.associations" nhoag/lsp-intelephense-files-associations)))
 #+END_SRC
 
-* Web
+** Web
 
 Haven't needed this yet, but keeping it around in case I need to edit HTML.
 
@@ -214,7 +214,7 @@ Haven't needed this yet, but keeping it around in case I need to edit HTML.
   :ensure t)
 #+END_SRC
 
-* PHP
+** PHP
 
 Hook up =php-mode= to LSP.
 
@@ -225,7 +225,7 @@ Hook up =php-mode= to LSP.
   (add-hook 'php-mode-hook #'lsp))
 #+END_SRC
 
-* Drupal
+** Drupal
 
 Add Drupal extensions to =php-mode= and =conf-windows-mode=.
 
@@ -235,7 +235,7 @@ Add Drupal extensions to =php-mode= and =conf-windows-mode=.
 (add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
 #+END_SRC
 
-* JavaScript
+** JavaScript
 
 In-progress JavaScript configuration. Haven't gotten LSP to work yet.
 
@@ -246,14 +246,14 @@ In-progress JavaScript configuration. Haven't gotten LSP to work yet.
   (add-hook 'js2-mode-hook #'lsp))
 #+END_SRC
 
-* JSON
+** JSON
 
 #+BEGIN_SRC emacs-lisp
 (use-package json-mode
   :ensure t)
 #+END_SRC
 
-* YAML
+** YAML
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
@@ -264,7 +264,7 @@ In-progress JavaScript configuration. Haven't gotten LSP to work yet.
     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 #+END_SRC
 
-* Company
+** Company
 
 Modular "COMPlete ANYthing" in-buffer [[https://company-mode.github.io/][completion framework]].
 
@@ -280,7 +280,7 @@ Add LSP backend to =company-mode=.
 (push 'company-lsp company-backends)
 #+END_SRC
 
-* Helm
+** Helm
 
 Emacs incremental completion and selection narrowing framework.
 
@@ -298,7 +298,7 @@ Emacs incremental completion and selection narrowing framework.
   (helm-mode 1))
 #+END_SRC
 
-* Projectile
+** Projectile
 
 Project Interaction Library for Emacs.
 
@@ -312,7 +312,7 @@ Project Interaction Library for Emacs.
   (projectile-global-mode))
 #+END_SRC
 
-* Magit
+** Magit
 
 Magit is an interface to the version control system Git, implemented as an Emacs package.
 
@@ -321,7 +321,7 @@ Magit is an interface to the version control system Git, implemented as an Emacs
   :ensure t)
 #+END_SRC
 
-* Moody
+** Moody
 
 Tabs and ribbons for the mode-line.
 
@@ -333,7 +333,7 @@ Tabs and ribbons for the mode-line.
   (moody-replace-vc-mode))
 #+END_SRC
 
-* Minions
+** Minions
 
 A minor-mode menu for the mode line.
 
@@ -343,7 +343,7 @@ A minor-mode menu for the mode line.
   (minions-mode 1))
 #+END_SRC
 
-* Auto-save
+** Auto-save
 
 #+BEGIN_SRC emacs-lisp
 (defvar my-auto-save-folder "~/.emacs.d/auto-save/")
@@ -351,7 +351,7 @@ A minor-mode menu for the mode line.
   (list "\\(.+/\\)*\\(.*?\\)" (expand-file-name "\\2" my-auto-save-folder)) t)
 #+END_SRC
 
-* Spell-Check
+** Spell-Check
 
 Add on-the-fly spell-check support.
 
@@ -365,7 +365,7 @@ Add on-the-fly spell-check support.
   (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 #+END_SRC
 
-* Auto-Wrap
+** Auto-Wrap
 
 Not quite how I want wrapping configured, but getting closer.
 
@@ -383,7 +383,7 @@ Not quite how I want wrapping configured, but getting closer.
 (add-hook 'org-mode-hook 'visual-fill-column-mode)
 #+END_SRC
 
-* Highlight Diff
+** Highlight Diff
 
 Emacs package for highlighting uncommitted changes.
 
@@ -394,7 +394,7 @@ Emacs package for highlighting uncommitted changes.
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
 #+END_SRC
 
-* Misc
+** Misc
 
 #+BEGIN_SRC emacs-lisp
 (setq-default indent-tabs-mode nil)
@@ -408,7 +408,7 @@ Emacs package for highlighting uncommitted changes.
 (setq ring-bell-function 'ignore)
 #+END_SRC
 
-* Proselint
+** Proselint
 
 Add prose linting to Flycheck. Depends on the [[http://proselint.com/][=proselint=]] command line tool.
 
@@ -426,7 +426,7 @@ Add prose linting to Flycheck. Depends on the [[http://proselint.com/][=proselin
 (add-to-list 'flycheck-checkers 'proselint)
 #+END_SRC
 
-* Origami
+** Origami
 
 Add support for collapsing and expanding regions of text.
 
