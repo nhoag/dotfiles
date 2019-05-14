@@ -225,7 +225,7 @@ Hook up =php-mode= to LSP.
 (use-package php-mode
   :ensure t
   :config
-  (add-hook 'php-mode-hook #'lsp))
+  (add-hook 'php-mode-hook 'lsp))
 #+END_SRC
 
 ** Drupal
