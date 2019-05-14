@@ -27,11 +27,6 @@ Add capability to evaluate code blocks with languages not provided by default.
         (shell . t)
     )
 )
-
-(add-hook 'org-src-mode-hook
-  (lambda ()
-    (set-fill-column 100)
-    (visual-fill-column-mode -1)))
 #+END_SRC
 
 ** Org Export Formats
