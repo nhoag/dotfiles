@@ -240,13 +240,17 @@ Add Drupal extensions to =php-mode= and =conf-windows-mode=.
 
 ** JavaScript
 
-In-progress JavaScript configuration. Haven't gotten LSP to work yet.
+JavaScript configuration.
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
   :ensure t
   :config
-  (add-hook 'js2-mode-hook #'lsp))
+  (add-hook 'js2-mode-hook 'lsp))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 #+END_SRC
 
 ** JSON
