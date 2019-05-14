@@ -44,7 +44,7 @@ set ignorecase                 " Ignore case.
 set incsearch                  " Show pattern matches when searching.
 set laststatus=2               " Always display a status line.
 set modeline                   " Honor document modelines.
-set mouse=a                    " Enable mouse interaction. Select w/o VISUAL mode with [SHIFT].
+"set mouse-=a                    " Enable mouse interaction. Select w/o VISUAL mode with [SHIFT].
 set noerrorbells               " Disable error messages.
 set nofoldenable               " Ensure all folds are open.
 set noswapfile                 " Don't create swap files.
@@ -166,5 +166,5 @@ map <Leader>k <Plug>(easymotion-k)
 " END EasyMotion configuration.
 
 " BEGIN Hardtime config
-let g:hardtime_default_on = 1
+"let g:hardtime_default_on = 1
 " END Hardtime config
