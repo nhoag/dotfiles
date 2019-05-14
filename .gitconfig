@@ -62,6 +62,7 @@
 	# See: https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
 	trustctime = false
 	ignoreCase = false
+	excludesfile = ~/.gitignore
 
 [diff]
 	renameLimit = 2000
