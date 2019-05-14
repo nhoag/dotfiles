@@ -1,6 +1,10 @@
 #+TITLE: Emacs Configuration
 #+OPTIONS: toc:nil num:nil
 
+Get [[https://www.emacswiki.org/emacs/Context_sensitive_help][context sensitive help]]:
+- =C-h f= Show documentation for the function under the cursor.
+- =C-h v= Show documentation for the variable under the cursor.
+
 ** Org
 
 Use a newer version of org-mode. Remove org directories from the load path to ensure the new version takes priority.
@@ -13,7 +17,11 @@ Use a newer version of org-mode. Remove org directories from the load path to en
 
 (require 'cl)
 (setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
+#+END_SRC
 
+Add capability to evaluate code blocks with languages not provided by default.
+
+#+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
         (shell . t)
@@ -57,7 +65,7 @@ Make the title bar look modern.
 
 ** Minimal UI
 
-Get rid of UI clutter.
+Get rid of default UI clutter.
 
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
@@ -165,7 +173,7 @@ Spell-checking.
 
 ** Eldoc
 
-Displays the signature of the called function in the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minibuffer.html#Minibuffer][Minibuffer]]. I might remove this in favor of lsp-ui.
+Displays the signature of the called function in the [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Minibuffer.html#Minibuffer][Minibuffer]]. I might remove or reduce the usage of this in favor of lsp-ui.
 
 #+BEGIN_SRC emacs-lisp
 (use-package eldoc :defer t
