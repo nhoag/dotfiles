@@ -11,7 +11,7 @@
 (require 'use-package)
 
 (require 'org)
-(org-babel-load-file "/Users/nathaniel.hoag/.emacs.d/emacs.org")
+(org-babel-load-file "~/.emacs.d/emacs.org")
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
