@@ -11,12 +11,14 @@ path=(
   "$HOME"/.bin
   "$HOME"/bin
   "$HOME"/.composer/vendor/bin
+  "$HOME"/.jetbrains/bin
   "$HOME"/src/Support-Tools/bin
   "$HOME"/src/mrt/bin
   "$GOPATH"/bin
   /usr/local/opt/llvm/bin
   /usr/local/share/npm/bin
   /usr/local/{bin,sbin}
+  /usr/local/opt/grep/libexec/gnubin
   /usr/X11/bin
   $path
 )
