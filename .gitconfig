@@ -65,7 +65,7 @@
 	excludesfile = ~/.gitignore
 
 [diff]
-	renameLimit = 2000
+	renameLimit = 4000
 	tool = vimdiff
 
 [difftool]
