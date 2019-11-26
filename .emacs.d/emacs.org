@@ -253,6 +253,18 @@ JavaScript configuration.
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 #+END_SRC
 
+** Rust
+
+Rust configuration.
+
+#+BEGIN_SRC emacs-lisp
+(use-package rust-mode
+  :ensure t)
+
+(use-package flycheck-rust
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+#+END_SRC
+
 ** JSON
 
 #+BEGIN_SRC emacs-lisp
