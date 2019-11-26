@@ -183,8 +183,13 @@ Language Server Protocol support for Emacs.
 (use-package lsp-mode
   :ensure t
   :config
-  (setq lsp-response-timeout 25))
+  (setq lsp-response-timeout 25)
+  (setq lsp-enable-snippet nil)
+  (setq lsp-enable-file-watchers nil))
 #+END_SRC
+
+=lsp-enable-snippet=: Set to =nil= to prevent complaints about missing YASnippet package.
+=lsp-enable-file-watchers=: Set to nil to silence complaints about slowdowns associated with large projects (>1000 files).
 
 Add support for overlay displays of LSP results.
 
