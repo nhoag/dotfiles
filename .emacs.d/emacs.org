@@ -156,6 +156,25 @@ Spell-checking.
   (global-auto-complete-mode t))
 #+END_SRC
 
+** Multiple Major Modes
+
+#+BEGIN_SRC emacs-lisp
+(use-package mmm-mode
+  :ensure t)
+
+(mmm-add-classes
+    '((js-graphql
+          :submode graphql-mode
+          :face mmm-declaration-submode-face
+          :front "[^a-zA-Z]gql`" ;; regex to find the opening tag
+          :back "`"))) ;; regex to find the closing tag
+(mmm-add-mode-ext-class 'js2-mode nil 'js-graphql)
+(setq mmm-global-mode 'maybe)
+;; Optional configuration that hides the background color for a highlighted block
+;; I find it useful for debugging emacs, but when actually coding I dont want so much emphasis on submodes
+(setq mmm-submode-decoration-level 0)
+#+END_SRC
+
 ** GraphQL
 
 #+BEGIN_SRC emacs-lisp
