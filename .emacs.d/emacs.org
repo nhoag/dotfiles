@@ -221,6 +221,9 @@ Haven't needed this yet, but keeping it around in case I need to edit HTML.
 
 Hook up =php-mode= to LSP.
 
+Run the following commands to get LSP working for PHP:
+=npm i -g intelephense=
+
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode
   :ensure t
@@ -241,6 +244,9 @@ Add Drupal extensions to =php-mode= and =conf-windows-mode=.
 ** JavaScript
 
 JavaScript configuration.
+
+Run the following commands to get LSP working for JavaScript:
+=npm i -g typescript-language-server; npm i -g typescript=
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
