@@ -353,9 +353,8 @@ A minor-mode menu for the mode line.
 ** Auto-save
 
 #+BEGIN_SRC emacs-lisp
-(defvar my-auto-save-folder "~/.emacs.d/auto-save/")
-(add-to-list 'auto-save-file-name-transforms
-  (list "\\(.+/\\)*\\(.*?\\)" (expand-file-name "\\2" my-auto-save-folder)) t)
+(setq backup-directory-alist
+  `(("." . ,(concat user-emacs-directory "backups"))))
 #+END_SRC
 
 ** Spell-Check
