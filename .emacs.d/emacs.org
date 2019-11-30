@@ -482,6 +482,19 @@ Add prose linting to Flycheck. Depends on the [[http://proselint.com/][=proselin
 (add-to-list 'flycheck-checkers 'proselint)
 #+END_SRC
 
+** Cookbook
+
+#+begin_src emacs-lisp
+(use-package org-chef
+  :ensure t)
+(setq org-capture-templates
+      '(("c" "Cookbook" entry (file "~/src/cookbook/cookbook.org")
+         "%(org-chef-get-recipe-from-url)"
+         :empty-lines 1)
+        ("m" "Manual Cookbook" entry (file "~/src/cookbok/cookbook.org")
+         "* %^{Recipe title: }\n  :PROPERTIES:\n  :source-url:\n  :servings:\n  :prep-time:\n  :cook-time:\n  :ready-in:\n  :END:\n** Ingredients\n   %?\n** Directions\n\n")))
+#+end_src
+
 ** Origami
 
 Add support for collapsing and expanding regions of text.
