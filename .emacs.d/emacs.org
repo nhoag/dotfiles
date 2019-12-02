@@ -295,11 +295,8 @@ Run the following commands to get LSP working for JavaScript:
 Rust configuration.
 
 #+BEGIN_SRC emacs-lisp
-(use-package rust-mode
+(use-package rustic
   :ensure t)
-
-(use-package flycheck-rust
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+END_SRC
 
 ** JSON
@@ -450,6 +447,16 @@ Emacs package for highlighting uncommitted changes.
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
 #+END_SRC
 
+** PATH
+
+#+BEGIN_SRC emacs-lisp
+(use-package exec-path-from-shell
+  :ensure t)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+#+END_SRC
+
 ** Misc
 
 #+BEGIN_SRC emacs-lisp
@@ -458,8 +465,6 @@ Emacs package for highlighting uncommitted changes.
 (global-hl-line-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'yaml-mode-hook 'display-line-numbers-mode)
-(setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/bin"))
-(add-to-list 'exec-path "/usr/local/bin")
 (setq column-number-mode t)
 (setq ring-bell-function 'ignore)
 #+END_SRC
