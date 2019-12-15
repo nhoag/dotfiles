@@ -37,12 +37,14 @@ set expandtab                  " Spaces over tabs.
 set fileformats+=mac           " EOL formats to try.
 set foldmethod=indent          " Fold on indent.
 set foldnestmax=3              " Maximum nesting of folds.
+set formatoptions-=t           " Prevent Vim from automatically reformatting when typing on existing lines.
 set hidden                     " Open a new file without writing changes.
 set history=1000               " Reasonable history size.
 set hlsearch                   " Highlight all matches from previous search pattern.
 set ignorecase                 " Ignore case.
 set incsearch                  " Show pattern matches when searching.
 set laststatus=2               " Always display a status line.
+set linebreak                  " Break lines at word boundary.
 set modeline                   " Honor document modelines.
 "set mouse-=a                    " Enable mouse interaction. Select w/o VISUAL mode with [SHIFT].
 set noerrorbells               " Disable error messages.
@@ -64,6 +66,7 @@ set smarttab                   " Tab behavior matches shiftwidth.
 set switchbuf=usetab           " Jump to the first open window or tab.
 set tabpagemax=50              " Maximum number of tab pages to open.
 set tabstop=2                  " Visual display of tabs.
+set textwidth=0                " Prevent Vim from automatically inserting line breaks in newly entered text.
 set title                      " Display a document title.
 set undofile                   " Name of the undo file.
 set viminfo='100,f1            " Save up to 100 marks, enable capital marks.
@@ -73,7 +76,8 @@ set wildmode=longest,full      " String completion mode.
 set winheight=5                " Window height.
 set winminheight=5             " Minimum window height.
 set winwidth=79                " Minimum window width.
-set wrap linebreak             " Break lines at a word boundary.
+set wrap                       " Break lines at a word boundary.
+set wrapmargin=0               " Prevent Vim from automatically inserting line breaks in newly entered text.
 
 filetype plugin indent on
 let mapleader = "\<Space>"
