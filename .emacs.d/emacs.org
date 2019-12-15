@@ -333,6 +333,21 @@ Add LSP backend to =company-mode=.
 (push 'company-lsp company-backends)
 #+END_SRC
 
+** Snippets
+
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :delight yas-minor-mode
+  :commands yas-minor-mode
+  :hook ((prog-mode text-mode) . yas-minor-mode)
+  :config
+  (yas-reload-all)
+  :bind (:map yas-minor-mode-map
+              ("C-c i" . yas-expand-from-trigger-key)))
+
+(use-package yasnippet-snippets)
+#+END_SRC
+
 ** Helm
 
 Emacs incremental completion and selection narrowing framework.
