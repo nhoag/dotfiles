@@ -5,6 +5,17 @@ Get [[https://www.emacswiki.org/emacs/Context_sensitive_help][context sensitive 
 - =C-h f= Show documentation for the function under the cursor.
 - =C-h v= Show documentation for the variable under the cursor.
 
+** Auto Package Updates
+
+#+BEGIN_SRC emacs-lisp
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 4)
+   (auto-package-update-maybe))
+#+END_SRC
+
 ** Org
 
 Use a newer version of org-mode. Remove org directories from the load path to ensure the new version takes priority.
