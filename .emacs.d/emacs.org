@@ -235,7 +235,9 @@ Add support for overlay displays of LSP results.
   :ensure t
   :after lsp-mode
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  :init (setq lsp-ui-doc-enable t
+    lsp-ui-doc-position 'top))
 #+END_SRC
 
 Add Drupal extensions to intelephense configuration.
