@@ -172,3 +172,9 @@ map <Leader>k <Plug>(easymotion-k)
 " BEGIN Hardtime config
 "let g:hardtime_default_on = 1
 " END Hardtime config
+
+" Load work assets.
+if !empty(glob("$HOME/.work/vim/*.vim"))
+  source $HOME/.work/vim/*.vim
+endif
+
