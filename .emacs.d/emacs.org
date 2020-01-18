@@ -499,7 +499,7 @@ Emacs package for highlighting uncommitted changes.
 
 ** Proselint
 
-Add prose linting to Flycheck. Depends on the [[http://proselint.com/][=proselint=]] command line tool.
+Add prose linting to Flycheck. Depends on the [[http://proselint.com/][=proselint=]] command line tool (MacOS: =brew install proselint=, Ubuntu: =sudo apt install python3-proselint=).
 
 #+BEGIN_SRC emacs-lisp
 (require 'flycheck)
