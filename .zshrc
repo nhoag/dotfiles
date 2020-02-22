@@ -34,15 +34,18 @@ source ~/.modules/zgen/zgen.zsh
 
 if ! zgen saved; then
   echo "Creating a zgen save"
+  zgen load zsh-users/zsh-completions src
+  zgen load zsh-users/zsh-autosuggestions
+  zgen load nhoag/zsh-themes basic
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
-  zgen load zsh-users/zsh-completions src
-  zgen load nhoag/zsh-themes basic
   zgen save
 fi
 
 NORMAL_MODE="%{$fg[red]%}*%{$reset_color%}"
 INSERT_MODE="%{$fg[yellow]%}<%{$reset_color%}"
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00afff"
 
 function zle-line-init zle-keymap-select {
   RPS1="${${KEYMAP/vicmd/$NORMAL_MODE}/(main|viins)/}"
@@ -84,6 +87,9 @@ bindkey -M emacs '^N' history-substring-search-down
 # Bind k and j for VI mode.
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+# Bind return for autosuggestions
+bindkey '^\n' autosuggest-execute
 
 autoload -U zmv
 
