@@ -22,6 +22,7 @@ call plug#begin()
   Plug 'sgur/vim-editorconfig'
   Plug 'takac/vim-hardtime'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-surround'
   Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
