@@ -45,7 +45,7 @@ fi
 NORMAL_MODE="%{$fg[red]%}*%{$reset_color%}"
 INSERT_MODE="%{$fg[yellow]%}<%{$reset_color%}"
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#00afff"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=magenta"
 
 function zle-line-init zle-keymap-select {
   RPS1="${${KEYMAP/vicmd/$NORMAL_MODE}/(main|viins)/}"
