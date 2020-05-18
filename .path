@@ -4,9 +4,6 @@ export GOPATH=$HOME/go
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-  ./bin
-  ./node_modules/.bin
-  ./vendor/bin
   "$HOME"/.rbenv/shims
   "$HOME"/bin
   "$HOME"/.composer/vendor/bin
