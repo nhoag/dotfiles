@@ -26,10 +26,10 @@ function bs() {
   # shellcheck disable=SC1117
   local NC="\033[0m"
 
-  echo "${YELLOW}LOGFILE:${NC} $LOGFILE"
+  echo "${YELLOW}LOGFILE:${NC} $LOGFILE" | tee -a "$LOGFILE"
   for command in tap upgrade "cask upgrade --greedy" "cleanup --verbose" doctor; do
     # shellcheck disable=SC1117,SC2028
-    echo "\n${YELLOW}COMMAND:${NC} ${command}\n"
+    echo "\n${YELLOW}COMMAND:${NC} ${command}\n" | tee -a "$LOGFILE"
     eval "brew ${command}" 2>&1 |
       tee -a "$LOGFILE"
   done
