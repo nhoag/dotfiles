@@ -25,3 +25,5 @@ path=(
 
 GPG_TTY=$(tty)
 export GPG_TTY
+
+[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]] && . "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
