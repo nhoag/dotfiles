@@ -35,5 +35,10 @@ script:
     .path \
     .profile \
     installer.sh
-- bats test
+
+# Disable bats due to unresolved bug and lack of maintainership.
+# https://github.com/sstephenson/bats/issues/140
+#
+# Might be a good time to switch to shunit2.
+# - bats test
 
