@@ -36,6 +36,7 @@ set complete-=i                " Use tags instead of include scans.
 set display+=lastline          " Display the last line.
 set expandtab                  " Spaces over tabs.
 set fileformats+=mac           " EOL formats to try.
+set fixendofline               " Add EOL at end of file if missing.
 set foldmethod=indent          " Fold on indent.
 set foldnestmax=3              " Maximum nesting of folds.
 set formatoptions-=t           " Prevent Vim from automatically reformatting when typing on existing lines.
@@ -47,7 +48,6 @@ set incsearch                  " Show pattern matches when searching.
 set laststatus=2               " Always display a status line.
 set linebreak                  " Break lines at word boundary.
 set modeline                   " Honor document modelines.
-"set mouse-=a                    " Enable mouse interaction. Select w/o VISUAL mode with [SHIFT].
 set noerrorbells               " Disable error messages.
 set nofoldenable               " Ensure all folds are open.
 set noswapfile                 " Don't create swap files.
@@ -60,6 +60,7 @@ set showbreak=" "              " String to put at the start of lines that have b
 set showcmd                    " Show (partial) command in the last line of the screen.
 set showmode                   " Show the current mode.
 set shortmess+=I               " Ensure the intro message is disabled when starting Vim.
+set shortmess-=S               " Display match count with string search.
 set sidescroll=1               " Minimal number of columns to scroll horizontally.
 set sidescrolloff=15           " Minimal number of screen columns to pad around the cursor.
 set smartcase                  " Override ignorecase if search pattern contains upper case letters.
@@ -80,16 +81,22 @@ set winwidth=79                " Minimum window width.
 set wrap                       " Break lines at a word boundary.
 set wrapmargin=0               " Prevent Vim from automatically inserting line breaks in newly entered text.
 
+" https://vi.stackexchange.com/a/10125
 filetype plugin indent on
+
+" Set leader to spacebar.
 let mapleader = "\<Space>"
+
+" Backup and undo directory configuration.
 let s:dir = '~/Library/Vim'
 let &backupdir = expand(s:dir) . '/backup//'
 let &undodir = expand(s:dir) . '/undo//'
-let g:ctrlp_regexp = 1
 if !isdirectory(expand(s:dir))
   call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
 end
 
+" Use Q to intelligently close a window in a buffer. Kill the buffer with a
+" single window.
 function! CloseWindowOrKillBuffer()
   let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
   if matchstr(expand("%"), 'NERD') == 'NERD'
@@ -103,20 +110,39 @@ function! CloseWindowOrKillBuffer()
   endif
 endfunction
 
-inoremap <C-s> <ESC>:w<CR>
-inoremap <C-U> <C-G>u<C-U>
-nmap j gj
-nmap k gk
-nnoremap <C-w>s <C-w>s<C-w>w
-nnoremap <C-w>v <C-w>v<C-w>w
-nnoremap <Leader>o :CtrlP<CR>
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
-nnoremap <C-s> :w<CR>
+
+" Recover from accidental Ctrl-U.
+"
+" @see: https://vim.fandom.com/wiki/Recover_from_accidental_Ctrl-U
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
+
+" Move by visible lines with ':set wrap'.
+"
+" @see: https://vim.fandom.com/wiki/Move_cursor_by_display_lines_when_wrapping
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" BEGIN CtrlP configuration.
+nnoremap <Leader>o :CtrlP<CR>
+let g:ctrlp_regexp = 1
+" END CtrlP configuration.
+
+" Unhighlight the last search string.
 nnoremap <Leader>/ :nohlsearch<CR>
-noremap n nzz
-noremap N Nzz
-vmap j gj
-vmap k gk
+
+" Ensure match count is always displayed.
+nnoremap n nzzhn
+nnoremap N Nzzhn
 
 " Remove trailing whitespace on write.
 autocmd BufWritePre * :%s/\s\+$//e
@@ -139,9 +165,11 @@ if has('mac')
   cmap <Esc>[201~ <nop>
 endif
 
+" BEGIN NERDTree configuration.
 nmap <Leader>n :NERDTreeToggle<CR>
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
+" END NERDTree configuration.
 
 " Allow adding cronjobs in macOS with Vim.
 "
@@ -152,7 +180,8 @@ if $VIM_CRONTAB == "true"
 endif
 
 " BEGIN EasyMotion configuration.
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Disable default mappings
+let g:EasyMotion_do_mapping = 0
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
@@ -170,9 +199,9 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 " END EasyMotion configuration.
 
-" BEGIN Hardtime config
+" BEGIN Hardtime configuration.
 "let g:hardtime_default_on = 1
-" END Hardtime config
+" END Hardtime configuration.
 
 " Load work assets.
 if !empty(glob("$HOME/.work/vim/*.vim"))
