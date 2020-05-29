@@ -13,17 +13,25 @@ endif
 
 " Plugins.
 call plug#begin()
+  " Full path fuzzy file, buffer, mru (Most Recently Used), tag, ... finder.
   Plug 'ctrlpvim/ctrlp.vim'
+  " Highlight choices and jump directly to the target.
   Plug 'easymotion/vim-easymotion'
+  " Adhere to .editorconfig.
+  Plug 'editorconfig/editorconfig-vim'
+  " Use <Tab> for insert completion (:help ins-completion).
   Plug 'ervandew/supertab'
+  " Text alignment.
   Plug 'godlygeek/tabular'
-  Plug 'mileszs/ack.vim'
+  " File system explorer.
   Plug 'scrooloose/nerdtree'
-  Plug 'sgur/vim-editorconfig'
-  Plug 'takac/vim-hardtime'
+  " Git actions.
   Plug 'tpope/vim-fugitive'
+  " Autodetect indentation.
   Plug 'tpope/vim-sleuth'
+  " Mappings to easily delete, change and add surroundings in pairs.
   Plug 'tpope/vim-surround'
+  " Git status flags in NERDTree.
   Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
@@ -109,7 +117,6 @@ function! CloseWindowOrKillBuffer()
     bdelete
   endif
 endfunction
-
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
 " Recover from accidental Ctrl-U.
@@ -198,10 +205,6 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 " END EasyMotion configuration.
-
-" BEGIN Hardtime configuration.
-"let g:hardtime_default_on = 1
-" END Hardtime configuration.
 
 " Load work assets.
 if !empty(glob("$HOME/.work/vim/*.vim"))
