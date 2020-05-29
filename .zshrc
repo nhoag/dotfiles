@@ -1,3 +1,5 @@
+# See 'man zshall' for comprehensive zsh documentation.
+#
 # Store color and style attributes (bold, underline and so on) in the
 # associative array color.
 autoload -U colors && colors
