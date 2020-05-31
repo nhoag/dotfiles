@@ -25,22 +25,6 @@ function blt() {
   fi
 }
 
-# Remove Docker containers and images.
-#
-# Inspired by @webbj74's `nuke-docker`.
-function docker-clean() {
-  echo "Remove Docker containers"
-  # shellcheck disable=SC2046
-  docker rm -f -v $(docker ps -a -q)
-
-  echo "Remove Docker images"
-  # shellcheck disable=SC2046
-  docker rmi $(docker images -q)
-
-  # Clean up dangling images, containers, volumes, and networks.
-  docker system prune -a -f --volumes
-}
-
 # Git wrapper for dotfiles.
 #
 # Use 'dots' as invocation for 'git' in the context of dotfiles in the home
