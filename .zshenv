@@ -1,2 +1,2 @@
-# Keep only the first occurence in path, cdpath etc.
+# Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
