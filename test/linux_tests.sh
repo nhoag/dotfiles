@@ -6,7 +6,7 @@ if "$TRAVIS"; then
   SOURCE_DIR="$TRAVIS_BUILD_DIR"
 fi
 
-. "${SOURCE_DIR}/.linux"
+source "${SOURCE_DIR}/.linux"
 
 testDpExists() {
   command -v dp
