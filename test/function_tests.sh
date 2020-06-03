@@ -6,7 +6,7 @@ if "$TRAVIS"; then
   SOURCE_DIR="$TRAVIS_BUILD_DIR"
 fi
 
-source "${SOURCE_DIR}/.function"
+. "${SOURCE_DIR}/.function"
 
 testHsExists() {
   command -v hs
