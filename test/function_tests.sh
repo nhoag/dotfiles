@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # file: test/function_tests.sh
 
 SOURCE_DIR=$HOME

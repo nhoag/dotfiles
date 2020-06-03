@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # shellcheck disable=SC2206
 alias ls='ls --color=tty --group-directories-first'
 
