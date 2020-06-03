@@ -7,14 +7,12 @@ os:
 addons:
   apt:
     packages:
+    - shunit2
     - zsh
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install shunit2 shellcheck shfmt; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then SHUNIT2="$(which shunit2)"; fi
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then SHUNIT2="$HOME/shunit2"; fi
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then curl -L https://github.com/kward/shunit2/releases/download/2.1.8/shunit2 -o "${SHUNIT2}" && chmod +x "${SHUNIT2}"; fi
 
 script:
 - |
@@ -38,5 +36,5 @@ script:
     .path \
     .profile \
     installer.sh
-- for test in "${TRAVIS_BUILD_DIR}"/test/*_tests.sh; do "${SHUNIT2}" "${test}"; done
+- for test in "${TRAVIS_BUILD_DIR}"/test/*_tests.sh; do shunit2 "${test}"; done
 
