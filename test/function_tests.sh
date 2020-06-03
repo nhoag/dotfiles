@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # file: test/function_tests.sh
 
-source "${HOME}/.function"
+SOURCE_DIR=$HOME
+if "$TRAVIS"; then
+  SOURCE_DIR="$TRAVIS_BUILD_DIR"
+fi
+
+source "${SOURCE_DIR}/.function"
 
 testHsExists() {
   command -v hs

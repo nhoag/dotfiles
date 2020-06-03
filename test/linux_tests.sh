@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # file: test/linux_tests.sh
 
-source "${HOME}/.linux"
+SOURCE_DIR="$HOME"
+if "$TRAVIS"; then
+  SOURCE_DIR="$TRAVIS_BUILD_DIR"
+fi
+
+source "${SOURCE_DIR}/.linux"
 
 testDpExists() {
   command -v dp
@@ -16,5 +21,5 @@ testRmlExists() {
 }
 
 testRmlStatus() {
-  rml 2 "${HOME}/test/test.txt"
+  rml 2 "${SOURCE_DIR}/test/test.txt"
 }
