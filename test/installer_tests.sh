@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # file: test/installer_tests.sh
 
 SOURCE_DIR="$HOME"
