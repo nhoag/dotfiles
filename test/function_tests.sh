@@ -2,11 +2,11 @@
 # file: test/function_tests.sh
 
 SOURCE_DIR=$HOME
-if "$TRAVIS"; then
+if [[ -n "$TRAVIS" ]]; then
   SOURCE_DIR="$TRAVIS_BUILD_DIR"
 fi
 
-source "${SOURCE_DIR}/.function"
+. "${SOURCE_DIR}/.function"
 
 testHsExists() {
   command -v hs
@@ -46,4 +46,6 @@ testMcdRand() {
   mcd "${nested_dir}"
   assertTrue '[[ -d "${nested_dir}" ]]'
 }
+
+. $(which shunit2)
 

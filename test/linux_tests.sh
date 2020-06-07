@@ -2,11 +2,11 @@
 # file: test/linux_tests.sh
 
 SOURCE_DIR="$HOME"
-if "$TRAVIS"; then
+if [[ -n "$TRAVIS" ]]; then
   SOURCE_DIR="$TRAVIS_BUILD_DIR"
 fi
 
-source "${SOURCE_DIR}/.linux"
+. "${SOURCE_DIR}/.linux"
 
 testDpExists() {
   command -v dp
@@ -23,3 +23,6 @@ testRmlExists() {
 testRmlStatus() {
   rml 2 "${SOURCE_DIR}/test/test.txt"
 }
+
+. $(which shunit2)
+
