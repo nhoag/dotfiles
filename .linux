@@ -27,5 +27,7 @@ path=(
 GPG_TTY=$(tty)
 export GPG_TTY
 
+export DISPLAY=:0.0
+
 # shellcheck disable=SC1090
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]] && . "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
