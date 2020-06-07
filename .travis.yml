@@ -36,5 +36,5 @@ script:
     .path \
     .profile \
     installer.sh
-- for test in "${TRAVIS_BUILD_DIR}"/test/*_tests.sh; do shunit2 "${test}"; done
+- for test in "${TRAVIS_BUILD_DIR}"/test/*_tests.sh; do "${test}"; done
 
