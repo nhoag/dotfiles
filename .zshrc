@@ -103,7 +103,7 @@ fi
 # Display a red star on the right side when in NORMAL mode.
 NORMAL_MODE="%{$fg[red]%}*%{$reset_color%}"
 # Display a yellow angle bracket on the right side when in INSERT mode.
-INSERT_MODE="%{$fg[yellow]%}<%{$reset_color%}"
+# INSERT_MODE="%{$fg[yellow]%}<%{$reset_color%}"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=magenta"
 
