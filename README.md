@@ -20,7 +20,8 @@ curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/master/installer.sh
 echo "23bef6210fb921b0a8d95554115e0943c8f3e47217c8c761362fa4f547458bcd  installer.sh" |
   shasum -c
 chmod +x ./installer.sh
-./installer.sh
+./installer.sh # [--force]
+dots submodule update
 ```
 
 ### macOS
