@@ -1,7 +1,5 @@
 # Dotfiles
 
-[![Build Status](https://travis-ci.org/nhoag/dotfiles.svg?branch=master)](https://travis-ci.org/nhoag/dotfiles)
-
 My personal dotfiles!
 
 ## Requirements
@@ -16,7 +14,7 @@ My personal dotfiles!
 By default, the installer script will not overwrite contents in the home directory. If you're sure this is what you want, run the installer with `--force`.
 
 ```bash
-curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/master/installer.sh
+curl -sO https://raw.githubusercontent.com/nhoag/dotfiles/main/installer.sh
 echo "23bef6210fb921b0a8d95554115e0943c8f3e47217c8c761362fa4f547458bcd  installer.sh" |
   shasum -c
 chmod +x ./installer.sh

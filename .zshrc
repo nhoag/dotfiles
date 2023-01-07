@@ -152,7 +152,7 @@ autoload -Uz vcs_info
 # %s - The current version control system, like git or svn.
 # %r - The name of the root directory of the repository
 # %S - The current path relative to the repository root directory
-# %b - Branch information, like master
+# %b - Branch information, like main
 # %m - In case of Git, show information about stashes
 # %u - Show unstaged changes in the repository
 # %c - Show staged changes in the repository

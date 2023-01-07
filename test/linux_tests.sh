@@ -2,9 +2,6 @@
 # file: test/linux_tests.sh
 
 SOURCE_DIR="$HOME"
-if [[ -n "$TRAVIS" ]]; then
-  SOURCE_DIR="$TRAVIS_BUILD_DIR"
-fi
 
 . "${SOURCE_DIR}/.linux"
 

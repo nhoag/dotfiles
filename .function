@@ -47,7 +47,7 @@ function dots() {
 # HTTP Status info.
 function hs() {
   local HSDIR
-  [[ -z "$TRAVIS_BUILD_DIR" ]] && HSDIR="$HOME" || HSDIR='.'
+  HSDIR='.'
   grep -E "^${1}" "$HSDIR/src/http.status.txt"
 }
 

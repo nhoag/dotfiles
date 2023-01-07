@@ -6,26 +6,6 @@
 	ct = commit
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
-	# Switch to a branch, creating it if necessary
-	go = !"f() { \
-			git checkout -b \"$1\" 2> /dev/null \
-				|| git checkout \"$1\"; \
-		}; f"
-
-	# Checkout a pull request from origin (of a github repository)
-	pr = !"f() { \
-			git fetch ${2:-origin} pull/$1/head:pr-$1 \
-				&& git checkout pr-$1; \
-		}; f"
-
-	# Sync changes from upstream to fork
-	sync = !"f() { \
-			git checkout master \
-				&& git fetch --all \
-				&& git rebase upstream/master \
-				&& git push -f origin master; \
-		}; f"
-
 	# Show verbose output about tags, branches or remotes
 	branches = branch -a
 	remotes = remote -v
